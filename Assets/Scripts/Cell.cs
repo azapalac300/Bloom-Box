@@ -121,6 +121,10 @@ public class Cell : MonoBehaviour {
                 ColorUtility.TryParseHtmlString("#ff3300", out c);
                 break;
 
+            case CellColor.white:
+                ColorUtility.TryParseHtmlString("#ffffff", out c);
+                break;
+
             case CellColor.orange:
                 ColorUtility.TryParseHtmlString("#fdad3f", out c);
                 break;

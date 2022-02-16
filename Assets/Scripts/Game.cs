@@ -47,9 +47,12 @@ public class Game : MonoBehaviour {
 
     public static Vector2 worldTouchPosition { get {
 
-           return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           return Camera.main.ScreenToWorldPoint(TouchControls.mainTouchPos);
 
     } }
+
+   // public static Vector2
+
 
     public static string CoordsToString(int[] coords)
     {
@@ -287,25 +290,39 @@ public class Game : MonoBehaviour {
 
     public void LoadNextLevel()
     {
-        victoryDisplay.SetActive(false);
-        if (levelNum < maxLevels - 1)
+        if(mode == Mode.Edit)
         {
-            if (mode == Mode.Play)
+            Debug.LogError("Something went wrong, you shouldn't be able to access this function in edit mode");
+        }
+
+        if (mode == Mode.Play)
+        {
+
+            victoryDisplay.SetActive(false);
+            if (levelNum < maxLevels - 1)
             {
+
                 levelNum++;
 
                 if (settings.currentLevel < maxLevels - 1 && !settings.testMode)
                 {
                     settings.currentLevel++;
                 }
-            }
 
-            levelSerializer.SetUpLevel();
+
+                levelSerializer.SetUpLevel();
+            }
+            else
+            {
+                //Return to the menu if we've beaten the game
+                SceneManager.LoadScene("MainMenu");
+            }
         }
-        else
+
+
+        if(mode == Mode.Test)
         {
-            //Return to the menu if we've beaten the game
-            SceneManager.LoadScene("MainMenu");
+            levelSerializer.SetUpLevel();
         }
     }
 

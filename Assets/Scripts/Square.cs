@@ -148,13 +148,17 @@ public class Square : MonoBehaviour {
             case SquareType.wind_right:
                 iconCandidate = Resources.Load<GameObject>("WindRight");
                 break;
+
+            case SquareType.pinned:
+                iconCandidate = Resources.Load<GameObject>("Pin");
+                break;
+
                 #endregion
         }
 
         if (iconCandidate != null)
         {
             icon = Instantiate(iconCandidate, transform.position + new Vector3(0, 0, -1f), Quaternion.identity);
-            icon.transform.localScale = Game.Scale2D() * 1.5f;
             icon.transform.SetParent(transform);
         }
     }
@@ -369,6 +373,7 @@ public class Square : MonoBehaviour {
         {
             if (neighbors[i] != null)
             {
+
                 ActivateAbilityOnSquare(neighbors[i].type, ref abilityHasTriggered);
 
             }
@@ -377,9 +382,14 @@ public class Square : MonoBehaviour {
     }
 
 
-    public void ActivateAbilityOnSquare(SquareType type, ref bool flag)
+    public void ActivateAbilityOnSquare(SquareType activatorType, ref bool flag)
     {
-        switch (type)
+        if(type == SquareType.pinned)
+        {
+            return;
+        }
+
+        switch (activatorType)
         {
             case SquareType.normal:
                 break;
@@ -455,6 +465,9 @@ public class Square : MonoBehaviour {
             case SquareType.wind_right:
                 Shift(MatchDirection.right);
                 flag = true;
+                break;
+
+            case SquareType.pinned:
                 break;
                 #endregion
         }

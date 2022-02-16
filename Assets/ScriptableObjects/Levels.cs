@@ -14,7 +14,7 @@ public class Levels : ScriptableObject
             list = new List<LevelDataAsset>();
         }
 
-//#if(UNITY_EDITOR)
+#if(UNITY_EDITOR)
 
         LevelDataAsset a = MakeLevelData.CreateFile(list.Count, data);
 
@@ -22,7 +22,7 @@ public class Levels : ScriptableObject
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
-//#endif
+#endif
 
     }
 

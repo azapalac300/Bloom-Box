@@ -14,7 +14,7 @@ public class ResourceManager
 
 public enum CellColor
 {
-    wild, red, blue, cyan, orange, green, purple, dead
+    wild, red, blue, cyan, orange, green, purple, dead, white
 }
 
 public enum MatchDirection
@@ -28,7 +28,7 @@ public enum MatchDirection
 public enum SquareType
 {
     normal, rotate_right, rotate_left, wind_up, wind_down, wind_left, wind_right,
-    paint_wild, paint_red, paint_blue, paint_cyan, paint_orange, paint_green, paint_purple, paint_dead
+    paint_wild, paint_red, paint_blue, paint_cyan, paint_orange, paint_green, paint_purple, paint_dead, paint_white, pinned
 }
 
 public enum Position

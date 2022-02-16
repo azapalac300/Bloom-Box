@@ -26,6 +26,9 @@ public class PaintBrush : MonoBehaviour
                 ColorUtility.TryParseHtmlString("#ff3300", out c);
                 break;
 
+            case CellColor.white:
+                break;
+
             case CellColor.orange:
                 ColorUtility.TryParseHtmlString("#fdad3f", out c);
                 break;

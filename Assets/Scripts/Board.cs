@@ -223,9 +223,9 @@ public class Board : MonoBehaviour {
                 if (!placedSquares.ContainsKey(Game.CoordsToString(coords)))
                 {
                     Square square = Instantiate(squarePrefab, placement, Quaternion.identity).GetComponent<Square>();
-                    square.transform.parent = transform;
+                    square.transform.SetParent(transform);
                     square.coords = coords;
-                    placedSquares.Add(Game.CoordsToString(coords), square);
+                    AddSquareToBoard(square, false);
                 }
             }
         }else if (Input.GetKey(KeyCode.D))
@@ -485,6 +485,7 @@ public class Board : MonoBehaviour {
 
     void CheckWin()
     {
+
         for(int i = 0; i < goalMarkers.Count; i++)
         {
             int[] goalCoords = GetGridCoordinates(goalMarkers[i].transform.position);
@@ -494,6 +495,8 @@ public class Board : MonoBehaviour {
                 return;
             }
         }
+
+        
         game.WinLevel();
     }
 }
