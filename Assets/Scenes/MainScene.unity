@@ -279,8 +279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 8.4, y: -14.8}
-  m_SizeDelta: {x: 46.771545, y: 14.657692}
+  m_AnchoredPosition: {x: 8, y: -14.8}
+  m_SizeDelta: {x: 47.57811, y: 14.657692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143373696
 MonoBehaviour:
@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f5778be4b00a844af92e08913fd3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsingTouch: 0
 --- !u!1 &247431182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,7 +2041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0c3d2307abd0944a7edc276498d87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 1
+  scale: 1.5
   shiftSpeed: 10
   boardSize: 20
   gameMode: 0
@@ -2120,6 +2121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f5778be4b00a844af92e08913fd3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsingTouch: 0
 --- !u!1 &1420520414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,8 +2758,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -71, y: 229}
-  m_SizeDelta: {x: 53.19995, y: 84.8}
+  m_AnchoredPosition: {x: -58, y: 230}
+  m_SizeDelta: {x: 53.19995, y: 73.30606}
   m_Pivot: {x: 0.5, y: 0.49999967}
 --- !u!114 &1739278069
 MonoBehaviour:

@@ -17,6 +17,7 @@ public class Square : MonoBehaviour {
 
     public bool highlighted;
     private Vector3 selectedScale;
+    private Vector3 highlightedScale;
     private Vector3 origScale;
 
     private GameObject icon;
@@ -175,6 +176,7 @@ public class Square : MonoBehaviour {
 
             origScale = transform.localScale;
             selectedScale = origScale * 1.2f;
+            highlightedScale = selectedScale * 1.2f;
 
             origPosition = transform.position;
             GetComponent<BoxCollider>().size = new Vector3(Game.Scale * 2, Game.Scale * 2, 1);
@@ -205,10 +207,15 @@ public class Square : MonoBehaviour {
 
         coords = Board.GetGridCoordinates(transform.position);
 
+        if (selected)
+        {
+            transform.localScale = selectedScale;
+        }
+
 
         if (highlighted && !rotating)
         {
-            transform.localScale = selectedScale;
+            transform.localScale = highlightedScale;
         }
         else
         {
@@ -260,6 +267,8 @@ public class Square : MonoBehaviour {
 
                 if (!placed && !selected)
                 {
+                   Debug.DrawLine(Game.worldTouchPosition, new Vector2(transform.position.x, transform.position.y));
+
                     if (dist < Game.Scale)
                     {
                         Game.SelectSquare(this);

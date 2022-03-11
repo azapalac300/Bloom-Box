@@ -9,6 +9,8 @@ public class ResourceManager
         return new Vector2(vect.x, vect.y);
     }
 
+    public static float minSwipeDist = 20f;
+    public static float diagonalTolerance = 5f;
   
 }
 

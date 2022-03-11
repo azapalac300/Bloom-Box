@@ -47,7 +47,7 @@ public class Game : MonoBehaviour {
 
     public static Vector2 worldTouchPosition { get {
 
-           return Camera.main.ScreenToWorldPoint(TouchControls.mainTouchPos);
+           return Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     } }
 

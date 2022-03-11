@@ -78,7 +78,6 @@
     <Compile Include="Assets\Scripts\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Square.cs" />
     <Compile Include="Assets\Scripts\TouchControls.cs" />
-    <Compile Include="Assets\Scripts\TouchCreator.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/UnityEditors/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
