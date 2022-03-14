@@ -20,7 +20,11 @@ public class Square : MonoBehaviour {
     private Vector3 highlightedScale;
     private Vector3 origScale;
 
+    public float currentScale { get; private set; }
+
     private GameObject icon;
+
+    private Vector2 offset;
 
     public event Action<Square> PlaceSquareOnBoard;
 
@@ -68,9 +72,12 @@ public class Square : MonoBehaviour {
     // Use this for initialization 
     //Initialize all cells
     void Start() {
-
+        currentScale = 1f;
         SetUpCells();
         UpdateAbiltyIcon();
+
+        TouchControls.SwipeDownEvent += FWDRotate;
+        TouchControls.SwipeUpEvent += BWDRotate;
     }
 
 
@@ -175,8 +182,8 @@ public class Square : MonoBehaviour {
 
 
             origScale = transform.localScale;
-            selectedScale = origScale * 1.2f;
-            highlightedScale = selectedScale * 1.2f;
+            selectedScale = origScale * ResourceManager.selectedScaleFactor;
+            highlightedScale = selectedScale * ResourceManager.highlightedScaleFactor;
 
             origPosition = transform.position;
             GetComponent<BoxCollider>().size = new Vector3(Game.Scale * 2, Game.Scale * 2, 1);
@@ -193,7 +200,7 @@ public class Square : MonoBehaviour {
     {
         Cell cell = Instantiate(cellPrefab, transform.position, Quaternion.identity).GetComponent<Cell>();
         cell.transform.localScale *= Game.Scale / 4;
-        cell.transform.parent = this.transform;
+        cell.transform.parent = transform;
         cell.SetUp(this, position);
 
         
@@ -207,34 +214,36 @@ public class Square : MonoBehaviour {
 
         coords = Board.GetGridCoordinates(transform.position);
 
+        transform.localScale = origScale;
+        currentScale = 1f;
+
         if (selected)
         {
             transform.localScale = selectedScale;
+            currentScale = ResourceManager.selectedScaleFactor;
         }
+       
+        
 
-
-        if (highlighted && !rotating)
+        if (highlighted)
         {
             transform.localScale = highlightedScale;
+            currentScale = ResourceManager.highlightedScaleFactor;
         }
-        else
-        {
-            transform.localScale = origScale;
-        }
+      
         
 
         //Can be shortened because all cells shift at once
         tray = inTray;
-        if (Input.GetKeyDown(KeyCode.R) && !rotating && selected)
+
+        if (Input.GetKeyDown(KeyCode.R) )
         {
-            transform.localScale = origScale;
             FWDRotate();
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Q) && !rotating && selected)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            transform.localScale = origScale;
             BWDRotate();
         }
 
@@ -278,8 +287,19 @@ public class Square : MonoBehaviour {
 
                 if (selected)
                 {
-                   // transform.localScale = selectedScale;
-                    transform.position = Game.worldTouchPosition;
+
+                    transform.position = Game.worldTouchPosition + new Vector2(0, ResourceManager.squareFollowDist);
+                    float followDist = Vector3.Distance(Game.worldTouchPosition, flatPosition);
+
+                    if (Vector3.Distance(Game.worldTouchPosition, flatPosition) >= ResourceManager.squareFollowDist)
+                    {
+                       
+                        
+                    }
+                    else
+                    {
+                        offset = flatPosition - Game.worldTouchPosition;
+                    }
                 }else
                 {
                    // transform.localScale = origScale;
@@ -298,7 +318,7 @@ public class Square : MonoBehaviour {
         }
     }
 
-
+  
 
     void UpdateColors()
     {
@@ -447,12 +467,12 @@ public class Square : MonoBehaviour {
             #endregion
             #region other abilities
             case SquareType.rotate_right:
-                FWDRotate();
+                FWDRotate(true);
                 flag = true;
                 break;
 
             case SquareType.rotate_left:
-                BWDRotate();
+                BWDRotate(true);
                 flag = true;
                 break;
 
@@ -594,51 +614,65 @@ public class Square : MonoBehaviour {
         }
     }
 
-
     public void FWDRotate()
     {
-         foreach(Cell cell in Cells)
-         {
-            cell.LeftShift();
-         }
-        //Update the data
-
-        Cell tempCell = cellA;
-        cellA = cellD;
-        cellD = cellC;
-        cellC = cellB;
-        cellB = tempCell;
-
-
-        CellColor tempColor = aColor;
-        aColor = dColor;
-        dColor = cColor;
-        cColor = bColor;
-        bColor = tempColor;
-
-        UpdateColors();
+        FWDRotate(false);
     }
+    public void FWDRotate(bool bypass)
+    {
+        if ((!rotating && selected) || bypass)
+        {
+           
+            foreach (Cell cell in Cells)
+            {
+                cell.LeftShift();
+            }
+            //Update the data
 
+            Cell tempCell = cellA;
+            cellA = cellD;
+            cellD = cellC;
+            cellC = cellB;
+            cellB = tempCell;
+
+
+            CellColor tempColor = aColor;
+            aColor = dColor;
+            dColor = cColor;
+            cColor = bColor;
+            bColor = tempColor;
+
+            UpdateColors();
+        }
+    }
     public void BWDRotate()
     {
-        foreach(Cell cell in Cells)
-         {
-             cell.RightShift();
-         }
+        FWDRotate(false);
+    }
+    public void BWDRotate(bool bypass)
+    {
+        if ((!rotating && selected)|| bypass)
+        {
+            
+            foreach (Cell cell in Cells)
+            {
+                cell.RightShift();
+            }
 
-        Cell tempCell = cellD;
-        cellD = cellA;
-        cellA = cellB;
-        cellB = cellC;
-        cellC = tempCell;
+            Cell tempCell = cellD;
+            cellD = cellA;
+            cellA = cellB;
+            cellB = cellC;
+            cellC = tempCell;
 
-        CellColor tempColor = dColor;
-        dColor = aColor;
-        aColor = bColor;
-        bColor = cColor;
-        cColor = tempColor;
-        
-        UpdateColors();
+            CellColor tempColor = dColor;
+            dColor = aColor;
+            aColor = bColor;
+            bColor = cColor;
+            cColor = tempColor;
+
+            UpdateColors();
+        }
     }
 
    

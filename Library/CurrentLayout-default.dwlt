@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1904
     height: 931
-  m_MinSize: {x: 881, y: 492}
-  m_MaxSize: {x: 16006, y: 14042}
+  m_MinSize: {x: 880, y: 492}
+  m_MaxSize: {x: 16005, y: 14042}
   vertical: 0
-  controlID: 1016
+  controlID: 9559
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1330
     height: 931
-  m_MinSize: {x: 605, y: 492}
-  m_MaxSize: {x: 12005, y: 14042}
+  m_MinSize: {x: 604, y: 492}
+  m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 1021
+  controlID: 9560
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,10 +163,10 @@ MonoBehaviour:
     y: 0
     width: 1330
     height: 591
-  m_MinSize: {x: 605, y: 221}
-  m_MaxSize: {x: 12005, y: 4021}
+  m_MinSize: {x: 604, y: 221}
+  m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 1022
+  controlID: 9561
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -420,9 +420,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff
+      m_SelectedIDs: 8acb0000
+      m_LastClickedID: 52106
+      m_ExpandedIDs: f4b7ffff0eb8ffffacb8ffffb2b8ffff18c4ffff32c4ffffd0c4ffffd6c4ffffbac5ffffd4c5ffff72c6ffff78c6ffff26cdffff40cdffff44cdffff48cdfffff6cdffff10ceffffaeceffffb4ceffffd2cfffffeccfffff8ad0ffff90d0ffff32d2ffff4cd2ffffead2fffff0d2ffff04d5ffff1ed5ffffbcd5ffffc2d5ffff7cd7ffff96d7ffff34d8ffff3ad8ffff4cd9ffff66d9ffff6ad9ffff6ed9ffffb8d9ffffd2d9ffff70daffff76daffffc4dbffffdedbffff7cdcffff82dcffff3eddffff58ddfffff6ddfffffcddffffaedeffffc8deffff66dfffff6cdfffff8ee0ffffa8e0ffff46e1ffff4ce1ffff34e5ffff4ee5ffffece5fffff2e5fffff0e7ffff0ae8ffffa8e8ffffaee8ffff78e9ffff92e9ffff30eaffff36eaffff00ebffff1aebffffb8ebffffbeebffff76edffff90edffff2eeeffff34eefffff0eeffff0aefffffa8efffffaeefffffbef0ffffd8f0ffff76f1ffff7cf1ffff06f4ffff20f4ffffbef4ffffc4f4ffffc2f8ffffdcf8ffffe0f8ffffe4f8ffffbaf9ffffd4f9ffff72faffff78faffff6afbffffc03c00004e3d0000583d0000ee3d00004c420000e2420000ec42000082430000164a0000204a0000464a0000984a0000b64a00008c600000226100002c610000c2610000be660000c86600005e670000f06d0000fa6d0000486e0000906e00000a7c0000147c00001ca8000026a800006ca8000074a80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -482,9 +482,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -10.80023, y: 7.1836295, z: -188.8566}
+    m_Target: {x: -6.3765864, y: -21.133905, z: 0}
     speed: 2
-    m_Value: {x: -10.80023, y: 7.1836295, z: -188.8566}
+    m_Value: {x: -6.3765864, y: -21.133905, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -534,9 +534,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 31.566662
+    m_Target: 10
     speed: 2
-    m_Value: 31.566662
+    m_Value: 10
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -626,20 +626,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 50
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Resources
   m_LastFoldersGridSize: 50
   m_LastProjectPath: C:\Users\azapa\Bloom Box
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ec350000
-    m_LastClickedID: 13804
-    m_ExpandedIDs: 00000000de35000000ca9a3b
+    m_SelectedIDs: f8350000
+    m_LastClickedID: 13816
+    m_ExpandedIDs: 00000000ec35000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -667,7 +667,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000de35000000ca9a3b
+    m_ExpandedIDs: 00000000ec35000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -745,9 +745,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 714
+    y: 672
     width: 1329
-    height: 284
+    height: 319
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &19
 MonoBehaviour:
@@ -786,4 +786,4 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 34

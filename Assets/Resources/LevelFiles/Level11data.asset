@@ -20,19 +20,19 @@ MonoBehaviour:
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -15.999998
-          y: -8
+          x: -7.2
+          y: -7.2000003
           z: 0
         cellA_Color: 4
         cellB_Color: 4
         cellC_Color: 4
         cellD_Color: 4
         type: 3
-        coords: 0600000008000000
+        coords: 0700000007000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -15.999998
-          y: 16.000002
+          x: -9.599999
+          y: 9.6
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -42,8 +42,8 @@ MonoBehaviour:
         coords: 060000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 15.999998
-          y: 12
+          x: 9.6
+          y: 7.2000003
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -53,7 +53,7 @@ MonoBehaviour:
         coords: 0e0000000d000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 11.999999
+          x: 7.1999993
           y: 0
           z: 0
         cellA_Color: 7
@@ -64,8 +64,8 @@ MonoBehaviour:
         coords: 0d0000000a000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.9999995
-          y: 4.0000005
+          x: -4.8
+          y: 2.4
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -75,8 +75,8 @@ MonoBehaviour:
         coords: 080000000b000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -3.999999
-          y: -8
+          x: -2.4
+          y: -4.8
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -86,8 +86,8 @@ MonoBehaviour:
         coords: 0900000008000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 3.9999998
-          y: -4
+          x: 2.4
+          y: -2.4
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -98,7 +98,7 @@ MonoBehaviour:
       - position:
           testVector: {x: 0, y: 0, z: 0}
           x: 0
-          y: 7.9999995
+          y: 4.8
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -108,19 +108,19 @@ MonoBehaviour:
         coords: 0a0000000c000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -19.999998
+          x: -7.2
           y: 12
           z: 0
-        cellA_Color: 7
-        cellB_Color: 7
-        cellC_Color: 7
-        cellD_Color: 7
-        type: 8
-        coords: 050000000d000000
+        cellA_Color: 0
+        cellB_Color: 0
+        cellC_Color: 0
+        cellD_Color: 0
+        type: 0
+        coords: 070000000f000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 11.999999
-          y: 16.000002
+          x: 7.1999993
+          y: 9.6
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -130,8 +130,8 @@ MonoBehaviour:
         coords: 0d0000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 15.999998
-          y: 4.0000005
+          x: 9.6
+          y: 2.4
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -141,8 +141,8 @@ MonoBehaviour:
         coords: 0e0000000b000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -3.999999
-          y: 7.9999995
+          x: -2.4
+          y: 4.8
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -152,8 +152,8 @@ MonoBehaviour:
         coords: 090000000c000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.9999995
-          y: -4
+          x: -4.8
+          y: -2.4
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -164,7 +164,7 @@ MonoBehaviour:
       - position:
           testVector: {x: 0, y: 0, z: 0}
           x: 0
-          y: -8
+          y: -4.8
           z: 0
         cellA_Color: 7
         cellB_Color: 7
@@ -176,12 +176,12 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -18.24042
-          y: -18.512781
+          x: -6.3765845
+          y: -20.832193
           z: 0
         cellA_Color: 4
         cellB_Color: 4
         cellC_Color: 4
         cellD_Color: 4
         type: 0
-        coords: 0500000005000000
+        coords: 0700000001000000

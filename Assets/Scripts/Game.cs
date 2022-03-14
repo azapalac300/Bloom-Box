@@ -11,7 +11,7 @@ public class Game : MonoBehaviour {
     private float scale;
 
     [SerializeField]
-    private float shiftSpeed;
+    private float rotateSpeed;
 
     [SerializeField]
     private int boardSize;
@@ -47,7 +47,7 @@ public class Game : MonoBehaviour {
 
     public static Vector2 worldTouchPosition { get {
 
-           return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           return Camera.main.ScreenToWorldPoint(TouchControls.mainTouchPos);
 
     } }
 
@@ -98,7 +98,7 @@ public class Game : MonoBehaviour {
 
      
         Scale = scale;
-        ShiftTime = shiftSpeed;
+        ShiftTime = rotateSpeed;
         BoardSize = boardSize;
         mode = gameMode;
         levelSerializer = GetComponent<LevelSerializer>();
@@ -225,7 +225,7 @@ public class Game : MonoBehaviour {
 
         if (Game.SelectedSquare != null)
         {
-            board.PlaceOnBoard();
+            board.PlaceOnBoard(Game.SelectedSquare);
             if (!touching)
             {
                 SelectedSquare.Deselect();

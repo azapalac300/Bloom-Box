@@ -109,9 +109,10 @@ public class Board : MonoBehaviour {
 
    
 
-    public void PlaceOnBoard()
+    public void PlaceOnBoard(Square square)
     {
-        int[] touchCoords = GetGridCoordinates(Game.worldTouchPosition);
+        
+        int[] touchCoords = GetGridCoordinates(square.transform.position);
         FindSquarePlacement(touchCoords);
 
     }

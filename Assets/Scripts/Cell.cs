@@ -73,11 +73,11 @@ public class Cell : MonoBehaviour {
 
         if(direction > 0)
         {
-            targetVector = NextPositionVector;
+            targetVector = NextPositionVector*parentSquare.currentScale;
         }
         else
         {
-            targetVector = PrevPositionVector;
+            targetVector = PrevPositionVector*parentSquare.currentScale;
         }
 
         Vector3 diff = (Vector3)(parentSquare.Center + targetVector) - transform.position;
@@ -334,10 +334,10 @@ public class Cell : MonoBehaviour {
 
 
 
-    Vector2 positionA { get { return new Vector2(-Game.Scale/2, Game.Scale/2); } }
-    Vector2 positionB { get { return new Vector2(Game.Scale/2, Game.Scale/2); } }
-    Vector2 positionC { get { return new Vector2(Game.Scale/2, -Game.Scale/2); } }
-    Vector2 positionD { get { return new Vector2(-Game.Scale/2, -Game.Scale/2); } }
+    Vector2 positionA { get { return new Vector2(-Game.Scale / 2, Game.Scale / 2); } }
+    Vector2 positionB { get { return new Vector2(Game.Scale/2, Game.Scale/2) ; } }
+    Vector2 positionC { get { return new Vector2(Game.Scale/2, -Game.Scale/2) ; } }
+    Vector2 positionD { get { return new Vector2(-Game.Scale/2, -Game.Scale/2)  ; } }
 
     #endregion
 

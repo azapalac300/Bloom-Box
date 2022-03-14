@@ -9,8 +9,12 @@ public class ResourceManager
         return new Vector2(vect.x, vect.y);
     }
 
-    public static float minSwipeDist = 20f;
-    public static float diagonalTolerance = 5f;
+    public static float minSwipeDist = 250f;
+    public static float diagonalTolerance = 100f;
+    public static float selectedScaleFactor = 1.2f;
+    public static float highlightedScaleFactor = 1.2f;
+    public static float squareFollowDist = 3f;
+
   
 }
 
