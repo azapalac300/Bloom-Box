@@ -167,6 +167,7 @@ public class Square : MonoBehaviour {
         if (iconCandidate != null)
         {
             icon = Instantiate(iconCandidate, transform.position + new Vector3(0, 0, -1f), Quaternion.identity);
+            icon.transform.localScale *= Game.Scale;
             icon.transform.SetParent(transform);
         }
     }
@@ -251,7 +252,7 @@ public class Square : MonoBehaviour {
 
         if (shifting)
         {
-            transform.Translate(moveDelta * Game.ShiftTime * Time.deltaTime);
+            transform.Translate(moveDelta * Game.ShiftSpeed * Time.deltaTime);
             Debug.DrawLine(transform.position, transform.position + moveDelta*10, Color.red);
             if (CheckShiftCollision(moveDirection))
             {
@@ -647,7 +648,7 @@ public class Square : MonoBehaviour {
     }
     public void BWDRotate()
     {
-        FWDRotate(false);
+        BWDRotate(false);
     }
     public void BWDRotate(bool bypass)
     {

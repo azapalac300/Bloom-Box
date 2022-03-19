@@ -2180,9 +2180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 1.2
-  rotateSpeed: 0
+  rotateSpeed: 7
+  shiftSpeed: 10
   boardSize: 20
-  gameMode: 2
+  gameMode: 0
   levelNum: 1
   maxLevels: 6
   goalsLeft: 0
@@ -2260,7 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeIndicator: {fileID: 53599705}
-  UsingTouch: 0
+  UsingTouch: 1
 --- !u!1 &1420520414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2534,7 @@ RectTransform:
   m_GameObject: {fileID: 1561085810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.084407076, y: 0.084407076, z: 0.084407076}
+  m_LocalScale: {x: 0.7277499, y: 0.7277499, z: 0.7277499}
   m_Children:
   - {fileID: 838252600}
   m_Father: {fileID: 2143707347}
@@ -2541,7 +2542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.5, y: 22.401}
+  m_AnchoredPosition: {x: -45.2, y: 257.6}
   m_SizeDelta: {x: 127.22992, y: 52.365875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561085812
@@ -3721,7 +3722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2144365338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3731,7 +3732,7 @@ RectTransform:
   m_GameObject: {fileID: 2144365337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4092899, y: 0.4092899, z: 0.4092899}
+  m_LocalScale: {x: 0.6450818, y: 0.6450818, z: 0.6450818}
   m_Children:
   - {fileID: 1468100684}
   m_Father: {fileID: 2143707347}
@@ -3739,7 +3740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -62.3, y: 253.6}
+  m_AnchoredPosition: {x: -41.4, y: 246.1}
   m_SizeDelta: {x: 182.80072, y: 121.09921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144365339

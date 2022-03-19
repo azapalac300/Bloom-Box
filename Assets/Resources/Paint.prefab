@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7744159756747466089}
   - component: {fileID: 7744159756747466088}
+  - component: {fileID: 6687787582868021371}
   m_Layer: 0
   m_Name: Paint
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7744159756747466091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51.914562, y: -17.961178, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 7744159757186405983}
   m_Father: {fileID: 0}
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6687787582868021371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744159756747466091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c4af1e9ec09204ba9b976ccebbde20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brush: {fileID: 7744159757186405980}
+  color: 0
 --- !u!1 &7744159757186405982
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +107,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7744159757186405983}
   - component: {fileID: 7744159757186405980}
-  - component: {fileID: 3419406083145612496}
   m_Layer: 0
   m_Name: Icon_Paint-White
   m_TagString: Untagged
@@ -164,17 +178,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3419406083145612496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7744159757186405982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35c4af1e9ec09204ba9b976ccebbde20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 7744159757186405980}
-  color: 0

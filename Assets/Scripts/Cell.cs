@@ -82,10 +82,10 @@ public class Cell : MonoBehaviour {
 
         Vector3 diff = (Vector3)(parentSquare.Center + targetVector) - transform.position;
         diff.Normalize();
-        transform.Translate(diff * Game.ShiftTime * Time.deltaTime);
+        transform.Translate(diff * Game.RotateSpeed * Time.deltaTime);
         float dist = Vector2.Distance(transform.position, parentSquare.Center + targetVector);
 
-        if (dist < Game.ShiftTime * Time.deltaTime)
+        if (dist < Game.RotateSpeed * Time.deltaTime)
         {
             shiftFlag = false;
             transform.Translate((Vector3)(parentSquare.Center + targetVector) - transform.position);

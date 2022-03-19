@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PaintBrush : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer brush;
     public CellColor color;
     // Start is called before the first frame update
     void Start()
     {
-        
+       // transform.localScale*= Game.Scale;
         
     }
 
@@ -55,8 +55,10 @@ public class PaintBrush : MonoBehaviour
                 ColorUtility.TryParseHtmlString("#7B7B7B", out c);
                 break;
 
+            case CellColor.wild:
+                break;
         }
 
-        spriteRenderer.color = c;
+        brush.color = c;
     }
 }

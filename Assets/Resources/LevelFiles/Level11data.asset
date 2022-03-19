@@ -31,15 +31,15 @@ MonoBehaviour:
         coords: 0700000007000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -9.599999
+          x: -7.2
           y: 9.6
           z: 0
         cellA_Color: 7
         cellB_Color: 7
         cellC_Color: 7
         cellD_Color: 7
-        type: 6
-        coords: 060000000e000000
+        type: 8
+        coords: 070000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
           x: 9.6
@@ -108,15 +108,15 @@ MonoBehaviour:
         coords: 0a0000000c000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.2
-          y: 12
+          x: -9.599999
+          y: 7.2000003
           z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
-        type: 0
-        coords: 070000000f000000
+        cellA_Color: 7
+        cellB_Color: 7
+        cellC_Color: 7
+        cellD_Color: 7
+        type: 6
+        coords: 060000000d000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
           x: 7.1999993

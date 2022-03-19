@@ -14,6 +14,9 @@ public class Game : MonoBehaviour {
     private float rotateSpeed;
 
     [SerializeField]
+    private float shiftSpeed;
+
+    [SerializeField]
     private int boardSize;
 
     [SerializeField]
@@ -40,7 +43,10 @@ public class Game : MonoBehaviour {
     public InputField input;
 
     public static float Scale { get; private set; }
-    public static float ShiftTime { get; private set; }
+    public static float RotateSpeed { get; private set; }
+
+    public static float ShiftSpeed { get; private set; }
+
     public static int BoardSize { get; private set; }
     
     public static Square SelectedSquare { get; private set; }
@@ -98,7 +104,8 @@ public class Game : MonoBehaviour {
 
      
         Scale = scale;
-        ShiftTime = rotateSpeed;
+        RotateSpeed = rotateSpeed;
+        ShiftSpeed = shiftSpeed;
         BoardSize = boardSize;
         mode = gameMode;
         levelSerializer = GetComponent<LevelSerializer>();
