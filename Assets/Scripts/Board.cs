@@ -113,7 +113,7 @@ public class Board : MonoBehaviour {
     {
         
         int[] touchCoords = GetGridCoordinates(square.transform.position);
-        FindSquarePlacement(touchCoords);
+        FindSquarePlacement(square);
 
     }
 
@@ -328,7 +328,7 @@ public class Board : MonoBehaviour {
          };
     }
 
-    private void FindSquarePlacement(int[] coords)
+    private void FindSquarePlacement(Square s)
     {
 
         Color c = Color.magenta;
@@ -341,7 +341,7 @@ public class Board : MonoBehaviour {
        
   
         //The zero square is the position on the board we are currently at. If this is null, we are not overlapping any square.
-        Square zeroSquare = squaresOnBoard[coords[0], coords[1]];
+        Square zeroSquare = squaresOnBoard[s.coords[0], s.coords[1]];
 
         if (zeroSquare != null) {
             //Debug.Log("Distance: " + di)
@@ -352,85 +352,61 @@ public class Board : MonoBehaviour {
             c2 = Color.red;
         }
 
-        Debug.DrawLine(Game.SelectedSquare.transform.position, GetGridPosition(coords), c2);
+        Debug.DrawLine(Game.SelectedSquare.transform.position, GetGridPosition(s.coords), c2);
         if (zeroSquare == null)
         {
-
-            List<Square> neighbors = GetNeighborSquares(coords);
-           
+            List<Square> neighbors = GetNeighborSquares(s.coords);
 
             Game.SelectedSquare.highlighted = false;
-            bool filter = true;
-            Vector2 placementVector = Vector2.zero;
-            Square matchingNeighbor = null;
+            bool flag = true;
+
 
             if(neighbors[0] == null && neighbors[1] == null && neighbors[2] == null && neighbors[3] == null)
             {
                 c = Color.black;
-                filter = false;
+                flag = false;
             }
 
-            for(int i = 0; i < neighbors.Count; i++)
+           
+            if (!s.Matches(neighbors) && flag)
             {
-               
-                if(neighbors[i] != null)
-                {
-                    
-                    if (!Game.SelectedSquare.Matches(neighbors[i], (MatchDirection)i))
-                    {
-                        c = Color.green;
-                        filter = false;
-                    }
-                    else
-                    {
-                        placementVector = Game.MatchOffset((MatchDirection)i);
-                        matchingNeighbor = neighbors[i];
-
-                    }
-                }
+                c = Color.green;
+                flag = false;
             }
+
            
 
-            if (filter)
+            if (flag)
             {
                 c = Color.blue;
                 
-                if (!Game.SelectedSquare.placed && !Game.SelectedSquare.inTray)
+                if (!Game.SelectedSquare.placed && !Game.SelectedSquare.inTray && !placedSquares.ContainsKey(Game.CoordsToString(s.coords)))
                 {
-                    
-                    float dist = Vector2.Distance(Game.SelectedSquare.flatPosition, matchingNeighbor.flatPosition + placementVector);
-                   
-                    if (dist <= Game.Scale * 1.5f)
-                    {
                         c = Color.red;
-                        Square s = Game.SelectedSquare;
+                       
                         Cleanup();
                         SetHighlight(neighbors, s, true);
 
-
                         if (!Game.touching)
                         {
-                           
-                           
+
                             hand.RemoveSquare(s);
                             s.placed = true;
-                            s.transform.position = matchingNeighbor.flatPosition + placementVector;
-                          
+                            s.transform.position = GetGridPosition(s.coords);
+                           
                             s.transform.parent = transform;
                             s.Deselect();
                             s.highlighted = false;
                             s.PlaceSquareOnBoard += PlaceSquare;
+
                             PlaceSquare(s);
 
                             Cleanup();
                             
                         }
-                        
-                    }
                    
                 }
                 
-                Debug.DrawLine(Game.SelectedSquare.transform.position, matchingNeighbor.transform.position, c);
             }
             
         }
@@ -439,13 +415,15 @@ public class Board : MonoBehaviour {
 
     public void PlaceSquare(Square s)
     {
-        AddSquareToBoard(s, true);
+        List<Square> neighbors = GetNeighborSquares(s.coords);
+        
+        AddSquareToBoard(s, true, neighbors);
 
         CheckWin();
     }
 
 
-    private void AddSquareToBoard(Square s, bool checkAbilities)
+    private void AddSquareToBoard(Square s, bool checkAbilities, List<Square> neighbors = null)
     {
         placedSquares.Add(Game.CoordsToString(s.coords), s);
         squaresOnBoard[s.coords[0], s.coords[1]] = s;
@@ -457,7 +435,23 @@ public class Board : MonoBehaviour {
             if (!s.shifting)
             {
                 s.AffectNeighborsWithAbility();
+
             }
+
+        }
+
+        if(neighbors != null)
+        {
+
+            for(int i = 0; i < (int)MatchDirection.count; i++)
+            {
+                if(neighbors[i] != null)
+                {
+                    neighbors[i].PaintWhiteCells(s, (MatchDirection)i);
+                }
+            }
+
+            s.PaintWhiteCells(neighbors);
 
         }
     }

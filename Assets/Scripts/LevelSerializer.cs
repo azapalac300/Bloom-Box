@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.UI;
 public class LevelSerializer : MonoBehaviour
 {
     private Game game;
@@ -62,6 +62,7 @@ public class LevelSerializer : MonoBehaviour
     {
         levelData.boardData = Board_Data.toData(game.board);
         StoreHand();
+        levelData.tutorialData = game.tutorialText.text;
         levels.SaveLevel(game.levelNum, levelData);
     }
 
@@ -86,6 +87,7 @@ public class LevelSerializer : MonoBehaviour
         game.board.UpdateBoardData(data.boardData);
         game.goalsLeft = game.board.goalMarkers.Count;
         game.maxLevels = levels.list.Count;
+        game.tutorialText.text = data.tutorialData;
 
         if (data.handData != null)
         {

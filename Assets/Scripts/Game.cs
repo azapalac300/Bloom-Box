@@ -29,11 +29,13 @@ public class Game : MonoBehaviour {
 
     public int goalsLeft;
 
-    public GameObject menuButton;
+    public GameObject playButtons;
     public GameObject playMenu;
     public GameObject editMenu;
 
     public GameObject victoryDisplay;
+
+    public Text tutorialText;
 
     public GameObject editIndicator;
     public GameObject testIndicator;
@@ -57,7 +59,6 @@ public class Game : MonoBehaviour {
 
     } }
 
-   // public static Vector2
 
 
     public static string CoordsToString(int[] coords)
@@ -94,7 +95,7 @@ public class Game : MonoBehaviour {
     {
         if (settings.loadedFromMenu)
         {
-            levelNum = settings.currentLevel;
+            levelNum = settings.GetCurrentLevel();
             settings.testMode = false;
         }
         else
@@ -128,6 +129,7 @@ public class Game : MonoBehaviour {
 
         board.gameObject.SetActive(false);
         hand.gameObject.SetActive(false);
+        playButtons.SetActive(false);
     }
 
 
@@ -145,6 +147,7 @@ public class Game : MonoBehaviour {
 
         board.gameObject.SetActive(true);
         hand.gameObject.SetActive(true);
+        playButtons.SetActive(true);
     }
 
     // Use this for initialization
@@ -166,19 +169,19 @@ public class Game : MonoBehaviour {
         {
             case Mode.Edit:
                 ResetLevel();
-                menuButton.SetActive(true);
+                playButtons.SetActive(true);
                 testIndicator.SetActive(false);
                 editIndicator.SetActive(true);
                 board.SetUpEdit();
                 break;
             case Mode.Play:
-                menuButton.SetActive(true);
+                playButtons.SetActive(true);
                 testIndicator.SetActive(false);
                 editIndicator.SetActive(false);
                 board.SetUpPlay();
                 break;
             case Mode.Test:
-                menuButton.SetActive(false);
+                playButtons.SetActive(false);
                 testIndicator.SetActive(true);
                 editIndicator.SetActive(false);
                 board.SetUpPlay();
@@ -311,9 +314,9 @@ public class Game : MonoBehaviour {
 
                 levelNum++;
 
-                if (settings.currentLevel < maxLevels - 1 && !settings.testMode)
+                if (settings.GetCurrentLevel() < maxLevels - 1 && !settings.testMode)
                 {
-                    settings.currentLevel++;
+                    settings.SetCurrentLevel(settings.GetCurrentLevel() + 1);
                 }
 
 
@@ -350,7 +353,7 @@ public class Game : MonoBehaviour {
         if (levelToLoad < maxLevels)
         {
             levelNum = levelToLoad;
-            settings.currentLevel = levelToLoad;
+            settings.SetCurrentLevel(levelToLoad);
             levelSerializer.SetUpLevel();
         }
         else

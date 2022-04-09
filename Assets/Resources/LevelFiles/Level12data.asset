@@ -20,8 +20,8 @@ MonoBehaviour:
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.9999995
-          y: 4.0000005
+          x: -4.8
+          y: 2.4
           z: 0
         cellA_Color: 2
         cellB_Color: 2
@@ -33,23 +33,24 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -18.24042
-          y: -18.512781
+          x: -7.480488
+          y: -20.832193
           z: 0
         cellA_Color: 2
         cellB_Color: 5
         cellC_Color: 5
         cellD_Color: 2
         type: 0
-        coords: 0500000005000000
+        coords: 0700000001000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -12.24042
-          y: -18.512781
+          x: -3.880488
+          y: -20.832193
           z: 0
         cellA_Color: 2
         cellB_Color: 1
         cellC_Color: 2
         cellD_Color: 5
         type: 0
-        coords: 0700000005000000
+        coords: 0800000001000000
+    tutorialData: Rotator flowers make the flowers around them rotate

@@ -9,6 +9,7 @@ public class ResourceManager
         return new Vector2(vect.x, vect.y);
     }
 
+
     public static float minSwipeDist = 250f;
     public static float diagonalTolerance = 100f;
     public static float selectedScaleFactor = 1.2f;
@@ -28,13 +29,22 @@ public enum MatchDirection
     right = 0,
     up,
     left,
-    down
+    down,
+    count
+}
+
+public enum CellOrder
+{
+    cellA = 0,
+    cellB,
+    cellC,
+    cellD
 }
 
 public enum SquareType
 {
     normal, rotate_right, rotate_left, wind_up, wind_down, wind_left, wind_right,
-    paint_wild, paint_red, paint_blue, paint_cyan, paint_orange, paint_green, paint_purple, paint_dead, paint_white, pinned
+    paint_wild, paint_red, paint_blue, paint_cyan, paint_orange, paint_green, paint_purple, paint_dead, paint_white, framed
 }
 
 public enum Position

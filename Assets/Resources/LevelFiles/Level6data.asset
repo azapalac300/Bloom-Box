@@ -20,7 +20,7 @@ MonoBehaviour:
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.9999995
+          x: -4.8
           y: 0
           z: 0
         cellA_Color: 7
@@ -31,7 +31,7 @@ MonoBehaviour:
         coords: 080000000a000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 3.9999998
+          x: 2.4
           y: 0
           z: 0
         cellA_Color: 7
@@ -44,12 +44,13 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -18.24042
-          y: -18.512781
+          x: -7.480488
+          y: -20.832193
           z: 0
         cellA_Color: 2
         cellB_Color: 2
         cellC_Color: 2
         cellD_Color: 2
         type: 0
-        coords: 0500000005000000
+        coords: 0700000001000000
+    tutorialData: Wind flowers blow other flowers away!

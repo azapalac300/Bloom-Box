@@ -194,6 +194,7 @@ public class Level_Data
 
     public Board_Data boardData;
     public Hand_Data handData;
+    public string tutorialData;
 
     public Level_Data()
     {

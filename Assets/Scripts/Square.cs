@@ -39,6 +39,8 @@ public class Square : MonoBehaviour {
     [HideInInspector]
     public Cell cellA, cellB, cellC, cellD;
 
+
+
     [HideInInspector]
     public int[] coords;
 
@@ -157,8 +159,8 @@ public class Square : MonoBehaviour {
                 iconCandidate = Resources.Load<GameObject>("WindRight");
                 break;
 
-            case SquareType.pinned:
-                iconCandidate = Resources.Load<GameObject>("Pin");
+            case SquareType.framed:
+                iconCandidate = Resources.Load<GameObject>("Frame");
                 break;
 
                 #endregion
@@ -205,7 +207,6 @@ public class Square : MonoBehaviour {
         cell.SetUp(this, position);
 
         
-        //cell.SetRandomColor();
         return cell;
     }
 
@@ -338,37 +339,133 @@ public class Square : MonoBehaviour {
     }
 
 
-    public bool PointInSquare(Vector2 point)
+    public bool Matches(List<Square> neighbors)
     {
-        return (Vector2.Distance(point, Center) < radius);
-        
-    }
 
-    public bool Matches(Square other, MatchDirection direction)
-    {
         if (rotating)
         {
             return false;
         }
 
-        switch (direction)
+       bool flag = true;
+        for (int i = 0; i < Cells.Count; i++)
         {
-            
-            case MatchDirection.up:
-                return (MatchCellColors(cellA, other.cellD, direction) && MatchCellColors(cellB, other.cellC, direction));
+            CellOrder targetCell = (CellOrder)i;
+            switch (targetCell)
+            {
+                #region CellA
+                case (CellOrder.cellA):
 
-            case MatchDirection.down:
-                return (MatchCellColors(cellD, other.cellA, direction) && MatchCellColors(cellC, other.cellB, direction));
+                    if (neighbors[(int)MatchDirection.up] == null &&
+                        (neighbors[(int)MatchDirection.left] == null))
+                    {
+                        break;
+                    }
 
-            case MatchDirection.left:
-                return (MatchCellColors(cellA, other.cellB, direction) && MatchCellColors(cellD, other.cellC, direction));
+                    if (neighbors[(int)MatchDirection.up] == null)
+                    {
+                        flag = flag && MatchCells(cellA, neighbors[(int)MatchDirection.left].cellB);
+                        break;
+                    }
 
-            case MatchDirection.right:
-                return (MatchCellColors(cellB, other.cellA, direction) && MatchCellColors(cellC, other.cellD, direction));
+                    if (neighbors[(int)MatchDirection.left] == null)
+                    {
+                        flag = flag && MatchCells(cellA, neighbors[(int)MatchDirection.up].cellD);
+                        break;
+                    }
+
+                    flag = flag && MatchCells(cellA, neighbors[(int)MatchDirection.left].cellB, neighbors[(int)MatchDirection.up].cellD);
+
+
+                    break;
+                #endregion
+
+                #region CellB
+                case (CellOrder.cellB):
+
+                    if (neighbors[(int)MatchDirection.up] == null &&
+                        (neighbors[(int)MatchDirection.right] == null))
+                    {
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.up] == null)
+                    {
+                        flag = flag && MatchCells(cellB, neighbors[(int)MatchDirection.right].cellA);
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.right] == null)
+                    {
+                        flag = flag && MatchCells(cellB, neighbors[(int)MatchDirection.up].cellC);
+                        break;
+                    }
+
+                    flag = flag && MatchCells(cellB, neighbors[(int)MatchDirection.right].cellA, neighbors[(int)MatchDirection.up].cellC);
+                    if (flag)
+                    {
+                        Debug.Log("Cell B flag true!");
+                    }
+                    break;
+                #endregion
+
+                #region CellC
+                case (CellOrder.cellC):
+
+                    if (neighbors[(int)MatchDirection.down] == null &&
+                        (neighbors[(int)MatchDirection.right] == null))
+                    {
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.down] == null)
+                    {
+                        flag = flag && MatchCells(cellC, neighbors[(int)MatchDirection.right].cellD);
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.right] == null)
+                    {
+                        flag = flag && MatchCells(cellC, neighbors[(int)MatchDirection.down].cellB);
+                        break;
+                    }
+
+                    flag = flag && MatchCells(cellC, neighbors[(int)MatchDirection.right].cellD, neighbors[(int)MatchDirection.down].cellB);
+                    break;
+                #endregion
+
+                #region CellD
+                case (CellOrder.cellD):
+
+                    if (neighbors[(int)MatchDirection.down] == null &&
+                        (neighbors[(int)MatchDirection.left] == null))
+                    {
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.down] == null)
+                    {
+                        flag = flag && MatchCells(cellD, neighbors[(int)MatchDirection.left].cellC);
+                        break;
+                    }
+
+                    if (neighbors[(int)MatchDirection.left] == null)
+                    {
+                        flag = flag && MatchCells(cellD, neighbors[(int)MatchDirection.down].cellA);
+                        break;
+                    }
+
+                    flag = flag && MatchCells(cellD, neighbors[(int)MatchDirection.left].cellC, neighbors[(int)MatchDirection.down].cellA);
+                    break;
+                    #endregion
+
+
+            } 
         }
-        return false;
+
+        return flag;
     }
-   
+
     public void Deselect()
     {
         if (!placed)
@@ -377,7 +474,6 @@ public class Square : MonoBehaviour {
         }
         selected = false;
     }
-
 
     public bool AffectNeighborsWithAbility()
     {
@@ -414,7 +510,7 @@ public class Square : MonoBehaviour {
 
     public void ActivateAbilityOnSquare(SquareType activatorType, ref bool flag)
     {
-        if(type == SquareType.pinned)
+        if(type == SquareType.framed)
         {
             return;
         }
@@ -497,21 +593,214 @@ public class Square : MonoBehaviour {
                 flag = true;
                 break;
 
-            case SquareType.pinned:
+            case SquareType.framed:
                 break;
                 #endregion
         }
     }
 
-
-    bool MatchCellColors(Cell cell1, Cell cell2, MatchDirection direction)
+    public void PaintWhiteCells(Square newlyPlacedSquare, MatchDirection direction)
     {
-        if(cell1.color == CellColor.dead || cell2.color == CellColor.dead)
+
+        switch (direction)
+        {
+
+            case MatchDirection.down:
+                if (cellD.color == CellColor.white) { 
+                    UpdateCellColor(cellA, ref aColor, newlyPlacedSquare.cellD.color); 
+                }
+                if (cellB.color == CellColor.white) { 
+                    UpdateCellColor(cellB, ref bColor, newlyPlacedSquare.cellC.color); 
+                }
+                break;
+
+            case MatchDirection.up:
+                if (cellD.color == CellColor.white) { 
+                    UpdateCellColor(cellD, ref dColor, newlyPlacedSquare.cellA.color);
+                }
+                if (cellC.color == CellColor.white) {
+                    UpdateCellColor(cellC, ref cColor, newlyPlacedSquare.cellB.color);
+                }
+                break;
+
+            case MatchDirection.left:
+                if (cellB.color == CellColor.white) {
+                    UpdateCellColor(cellB, ref bColor, newlyPlacedSquare.cellA.color); 
+                }
+                if (cellC.color == CellColor.white) {
+                    UpdateCellColor(cellC, ref cColor, newlyPlacedSquare.cellD.color); 
+                }
+                break;
+
+            case MatchDirection.right:
+                if (cellA.color == CellColor.white) {
+                    UpdateCellColor(cellA, ref aColor, newlyPlacedSquare.cellB.color);
+                }
+                if (cellD.color == CellColor.white) {
+                    UpdateCellColor(cellD, ref dColor, newlyPlacedSquare.cellD.color);
+                }
+                break;
+        }
+    }
+
+    public void PaintWhiteCells(List<Square> neighbors)
+    {
+        for (int i = 0; i < Cells.Count; i++)
+        {
+            CellOrder targetCell = (CellOrder)i;
+
+            if (Cells[i].color == CellColor.white)
+            {
+                switch (targetCell)
+                {
+                    #region CellA
+                    case CellOrder.cellA:
+
+                        if(neighbors[(int)MatchDirection.up] == null && neighbors[(int)MatchDirection.left] == null)
+                        {
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.up] == null)
+                        {
+                            UpdateCellColor(cellA, ref aColor, neighbors[(int)MatchDirection.left].cellB.color);
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.left] == null)
+                        {
+                            UpdateCellColor(cellA, ref aColor, neighbors[(int)MatchDirection.up].cellD.color);
+                            break;
+                        }
+
+                        CellColor newAColor = Cell.CellPaintPriority(cellA, neighbors[(int)MatchDirection.up].cellD, neighbors[(int)MatchDirection.left].cellB);
+                        UpdateCellColor(cellA, ref aColor, newAColor);
+                        break;
+                    #endregion
+
+                    #region CellB
+                    case CellOrder.cellB:
+
+                        if (neighbors[(int)MatchDirection.up] == null && neighbors[(int)MatchDirection.right] == null)
+                        {
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.up] == null)
+                        {
+                            UpdateCellColor(cellB, ref bColor, neighbors[(int)MatchDirection.right].cellA.color);
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.right] == null)
+                        {
+                            UpdateCellColor(cellB, ref bColor, neighbors[(int)MatchDirection.up].cellC.color);
+                            break;
+                        }
+
+                        CellColor newBColor = Cell.CellPaintPriority(cellB, neighbors[(int)MatchDirection.up].cellC, neighbors[(int)MatchDirection.right].cellA);
+                        UpdateCellColor(cellB, ref bColor, newBColor);
+                        break;
+                    #endregion
+
+                    #region CellC
+                    case CellOrder.cellC:
+
+                        if (neighbors[(int)MatchDirection.down] == null && neighbors[(int)MatchDirection.right] == null)
+                        {
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.down] == null)
+                        {
+                            UpdateCellColor(cellC, ref cColor, neighbors[(int)MatchDirection.right].cellD.color);
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.right] == null)
+                        {
+                            UpdateCellColor(cellC, ref cColor, neighbors[(int)MatchDirection.down].cellB.color);
+                            break;
+                        }
+
+                        CellColor newCColor = Cell.CellPaintPriority(cellC, neighbors[(int)MatchDirection.down].cellB, neighbors[(int)MatchDirection.right].cellD);
+                        UpdateCellColor(cellC, ref cColor, newCColor);
+                        break;
+                    #endregion
+
+                    #region CellD
+                    case CellOrder.cellD:
+
+                        if (neighbors[(int)MatchDirection.down] == null && neighbors[(int)MatchDirection.left] == null)
+                        {
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.down] == null)
+                        {
+                            UpdateCellColor(cellD, ref dColor, neighbors[(int)MatchDirection.left].cellC.color);
+                            break;
+                        }
+
+                        if (neighbors[(int)MatchDirection.left] == null)
+                        {
+                            UpdateCellColor(cellD, ref dColor, neighbors[(int)MatchDirection.down].cellA.color);
+                            break;
+                        }
+
+                        CellColor targetColor = Cell.CellPaintPriority(cellD, neighbors[(int)MatchDirection.down].cellA, neighbors[(int)MatchDirection.left].cellC);
+                        UpdateCellColor(cellD, ref dColor, targetColor);
+                        break;
+                        #endregion
+                }
+            }
+        }
+
+    }
+
+    private void UpdateCellColor(Cell cell, ref CellColor colorToSet, CellColor targetColor)
+    {
+        colorToSet = targetColor;
+        cell.UpdateColor(colorToSet);
+    }
+
+    
+    public Square GetNeighbor(List<Square> neighbors, MatchDirection direction)
+    {
+        return neighbors[(int)direction];
+    }
+
+    bool MatchCells(Cell cell1, Cell cell2, Cell cell3)
+    {
+        if(cell1.color == CellColor.wild)
+        {
+            return true;
+        }
+
+        if (cell1.color == CellColor.dead || cell2.color == CellColor.dead || cell3.color == CellColor.dead)
         {
             return false;
         }
 
-        if (cell1.color == cell2.color || cell1.color == CellColor.wild || cell2.color == CellColor.wild) {
+        bool b1 = MatchCells(cell1, cell2);
+
+        bool b2 = MatchCells(cell2, cell3);
+
+        bool b3 = MatchCells(cell2, cell3);
+
+        if (b1 && b2 && b3)
+        {
+            int i = 0;
+        }
+
+         return (b1 && b2 && b3);
+    }
+
+    bool MatchCells(Cell cell1, Cell cell2)
+    {
+
+        if (cell1.color == cell2.color || cell1.color == CellColor.wild || cell2.color == CellColor.wild
+            || cell1.color == CellColor.white || cell2.color == CellColor.white) {
             return true;
         }
         else
@@ -541,7 +830,6 @@ public class Square : MonoBehaviour {
         typeSelection = data.type;
     }
 
-
     public void PaintSquare(CellColor color)
     {
         aColor = color;
@@ -558,7 +846,6 @@ public class Square : MonoBehaviour {
         dColor = color;
         cellD.UpdateColor(color);
     }
-
 
     public void Shift(MatchDirection moveDirection)
     {
@@ -621,6 +908,11 @@ public class Square : MonoBehaviour {
     }
     public void FWDRotate(bool bypass)
     {
+        if (type == SquareType.framed)
+        {
+            return;
+        }
+
         if ((!rotating && selected) || bypass)
         {
            
@@ -652,6 +944,11 @@ public class Square : MonoBehaviour {
     }
     public void BWDRotate(bool bypass)
     {
+        if(type == SquareType.framed)
+        {
+            return;
+        }
+
         if ((!rotating && selected)|| bypass)
         {
             
@@ -676,9 +973,6 @@ public class Square : MonoBehaviour {
         }
     }
 
-   
-
-    
 }
 
 

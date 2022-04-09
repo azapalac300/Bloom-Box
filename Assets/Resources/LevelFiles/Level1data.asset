@@ -53,3 +53,5 @@ MonoBehaviour:
         cellD_Color: 1
         type: 0
         coords: 0500000005000000
+    tutorialData: While holding a flower, swipe up to rotate left and down to rotate
+      right

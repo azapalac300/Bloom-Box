@@ -109,15 +109,24 @@ public class Cell : MonoBehaviour {
     {
        
         UpdateSprite();
-
-        Color c = Color.white;
         color = cellColor;
+
+
+        
+        spriteRenderer.color = SelectColor(cellColor);
+    }
+
+
+    public static Color SelectColor(CellColor cellColor)
+    {
+        Color c = Color.white;
+
         switch (cellColor)
         {
             //Wild and Dead both do something special when the sprite is updated
 
             case CellColor.red:
-                
+
                 ColorUtility.TryParseHtmlString("#ff3300", out c);
                 break;
 
@@ -150,10 +159,9 @@ public class Cell : MonoBehaviour {
             case CellColor.dead:
                 ColorUtility.TryParseHtmlString("#7B7B7B", out c);
                 break;
-         
-        }
 
-        spriteRenderer.color = c;
+        }
+        return c;
     }
 
     #region Position enum stuff
@@ -333,6 +341,43 @@ public class Cell : MonoBehaviour {
     }
 
 
+    public void PaintCell()
+    {
+
+
+
+    }
+
+    public static CellColor CellPaintPriority(Cell cell1, Cell cell2, Cell cell3)
+    {
+        CellColor cellColor = cell1.color;
+        if (cell2.color == cell3.color)
+        {
+            return cell2.color;
+        }
+
+        if (cell2.color == CellColor.white)
+        {
+            return cell3.color;
+        }
+
+        if (cell3.color == CellColor.white)
+        {
+            return cell2.color;
+        }
+
+        if (cell2.color == CellColor.wild)
+        {
+            return cell2.color;
+        }
+
+        if (cell3.color == CellColor.wild)
+        {
+            return cell3.color;
+        }
+
+        return cell1.color;
+    }
 
     Vector2 positionA { get { return new Vector2(-Game.Scale / 2, Game.Scale / 2); } }
     Vector2 positionB { get { return new Vector2(Game.Scale/2, Game.Scale/2) ; } }
@@ -342,6 +387,96 @@ public class Cell : MonoBehaviour {
     #endregion
 
 
+    public MatchDirection[] GetMatchDirections()
+    {
+        MatchDirection[] directions = new MatchDirection[] {MatchDirection.count, MatchDirection.count};
+
+        switch (position)
+        {
+            case Position.A:
+                directions[0] = MatchDirection.left;
+                directions[1] = MatchDirection.up;
+                break;
+
+            case Position.B:
+                directions[0] = MatchDirection.up;
+                directions[1] = MatchDirection.right;
+                break;
+
+            case Position.C:
+                directions[0] = MatchDirection.right;
+                directions[1] = MatchDirection.down;
+                break;
+
+            case Position.D:
+                directions[0] = MatchDirection.down;
+                directions[1] = MatchDirection.left;
+                break;
+
+        }
+
+
+        return directions;
+    }
+
+    public CellOrder GetMatchingCell(MatchDirection direction)
+    {
+        CellOrder order = CellOrder.cellA;
+        
+        switch (position)
+        {
+            
+            case Position.A:
+                if(direction == MatchDirection.left)
+                {
+                    return CellOrder.cellB;
+                }
+
+                if (direction == MatchDirection.up)
+                {
+                    return CellOrder.cellD;
+                }
+                break;
+
+            case Position.B:
+                if (direction == MatchDirection.up)
+                {
+                    return CellOrder.cellC;
+                }
+
+                if (direction == MatchDirection.right)
+                {
+                    return CellOrder.cellA;
+                }
+                break;
+
+            case Position.C:
+                if (direction == MatchDirection.right)
+                {
+                    return CellOrder.cellD;
+                }
+
+                if (direction == MatchDirection.down)
+                {
+                    return CellOrder.cellB;
+                }
+                break;
+
+            case Position.D:
+                if (direction == MatchDirection.down)
+                {
+                    return CellOrder.cellA;
+                }
+
+                if (direction == MatchDirection.left)
+                {
+                    return CellOrder.cellC;
+                }
+                break;
+        }
+
+        return order;
+    }
 
 }
 
