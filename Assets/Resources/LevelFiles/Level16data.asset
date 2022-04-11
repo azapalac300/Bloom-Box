@@ -84,17 +84,6 @@ MonoBehaviour:
         cellB_Color: 2
         cellC_Color: 2
         cellD_Color: 2
-        type: 0
+        type: 16
         coords: 0800000001000000
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: -1.8574909
-          y: -20.832193
-          z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
-        type: 0
-        coords: 0900000001000000
     tutorialData: 

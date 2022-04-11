@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4212277851725032}
   - component: {fileID: 114434118236959630}
+  - component: {fileID: 1109082181126807098}
   - component: {fileID: 65550917540779876}
+  - component: {fileID: 6911868223219437061}
   m_Layer: 0
   m_Name: Square
   m_TagString: Square
@@ -51,7 +53,7 @@ MonoBehaviour:
   tray: 0
   canBePlaced: 0
   highlighted: 0
-  type: 0
+  ability: {fileID: 1109082181126807098}
   aColor: 0
   bColor: 0
   cColor: 0
@@ -60,7 +62,22 @@ MonoBehaviour:
   cellB: {fileID: 0}
   cellC: {fileID: 0}
   cellD: {fileID: 0}
-  coords: 0000000000000000
+  coords: 0a0000000a000000
+  shifting: 0
+--- !u!114 &1109082181126807098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916619152986738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946c1049ae30469408d3f0d90a641d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 114434118236959630}
+  typeSelection: 0
 --- !u!65 &65550917540779876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,5 +89,26 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 1}
+  m_Size: {x: 2.4, y: 2.4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6911868223219437061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916619152986738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f318f1870a47948bd5b8e38a0dd3c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateLSound: {fileID: 0}
+  rotateRSound: {fileID: 0}
+  windSound: {fileID: 0}
+  paintSound: {fileID: 0}
+  errorSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  dropSound: {fileID: 0}
+  placeSounds: []
+  matchSounds: []

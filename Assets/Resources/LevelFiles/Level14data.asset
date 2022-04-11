@@ -90,7 +90,7 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.480488
+          x: -9.05749
           y: -20.832193
           z: 0
         cellA_Color: 3
@@ -98,5 +98,5 @@ MonoBehaviour:
         cellC_Color: 3
         cellD_Color: 3
         type: 6
-        coords: 0700000001000000
+        coords: 0600000001000000
     tutorialData: Framed flowers aren't affected by special flowers

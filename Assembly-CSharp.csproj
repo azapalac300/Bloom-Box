@@ -64,23 +64,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ScriptableObjects\LevelData.cs" />
-    <Compile Include="Assets\ScriptableObjects\LevelDataAsset.cs" />
-    <Compile Include="Assets\ScriptableObjects\Levels.cs" />
-    <Compile Include="Assets\Scripts\Board.cs" />
-    <Compile Include="Assets\Scripts\Cell.cs" />
-    <Compile Include="Assets\Scripts\Game.cs" />
-    <Compile Include="Assets\Scripts\Hand.cs" />
-    <Compile Include="Assets\Scripts\LevelSerializer.cs" />
-    <Compile Include="Assets\Scripts\PaintBrush.cs" />
-    <Compile Include="Assets\Scripts\PlaySettings.cs" />
-    <Compile Include="Assets\Scripts\ResourceManager.cs" />
-    <Compile Include="Assets\Scripts\Square.cs" />
-    <Compile Include="Assets\Scripts\TouchControls.cs" />
+    <Compile Include="Assets\Scripts\Audio\GameAudio.cs" />
+    <Compile Include="Assets\Scripts\Audio\SquareAudio.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Board.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Cell.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Game.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Hand.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\LevelSerializer.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\PaintBrush.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\PlaySettings.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Square.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SquareAbility.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\TouchControls.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\LevelData.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\LevelDataAsset.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\Levels.cs" />
+    <Compile Include="Assets\Scripts\SwipeIndicator.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelectCell.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelectSquare.cs" />
     <Compile Include="Assets\Scripts\UI\Menu_UI.cs" />
-    <Compile Include="Assets\SwipeIndicator.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/UnityEditors/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
