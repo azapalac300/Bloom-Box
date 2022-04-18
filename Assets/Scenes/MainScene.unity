@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9447fd79cb00c4796867f91926d17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTrack: {fileID: 8300000, guid: 71673b893e117bf46bee861cf7d1db04, type: 3}
+  mainTrack: {fileID: 8300000, guid: 042916545dc859c4e924aaa763dd711a, type: 3}
   buttonSound: {fileID: 8300000, guid: 283bc1df85e1b2243856180271419b6c, type: 3}
   mainTrackSource: {fileID: 1128491766}
   effectSoundSource: {fileID: 1128491765}
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   rotateSpeed: 7
   shiftSpeed: 10
   boardSize: 20
-  gameMode: 2
+  gameMode: 0
   levelNum: 1
   maxLevels: 6
   goalsLeft: 0

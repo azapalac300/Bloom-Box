@@ -14,9 +14,11 @@ public class SquareAbility : MonoBehaviour
 
     private GameObject icon;
 
+    private SquareAudio squareAudio;
+
     void Start()
     {
-        
+        squareAudio = GetComponent<SquareAudio>();
     }
 
     // Update is called once per frame
@@ -133,42 +135,51 @@ public class SquareAbility : MonoBehaviour
             #region paint abilities:
             case SquareType.paint_red:
                 square.PaintSquare(CellColor.red);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_blue:
+
                 square.PaintSquare(CellColor.blue);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
 
             case SquareType.paint_cyan:
                 square.PaintSquare(CellColor.cyan);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_orange:
                 square.PaintSquare(CellColor.orange);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_green:
                 square.PaintSquare(CellColor.green);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_purple:
                 square.PaintSquare(CellColor.purple);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_dead:
                 square.PaintSquare(CellColor.dead);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_wild:
                 square.PaintSquare(CellColor.wild);
+                squareAudio.PlayPaintSound();
                 flag = true;
                 break;
             #endregion
@@ -185,21 +196,25 @@ public class SquareAbility : MonoBehaviour
 
             case SquareType.wind_up:
                 square.Shift(MatchDirection.up);
+                squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_down:
                 square.Shift(MatchDirection.down);
+                squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_left:
                 square.Shift(MatchDirection.left);
+                squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_right:
                 square.Shift(MatchDirection.right);
+                squareAudio.PlayWindSound();
                 flag = true;
                 break;
 

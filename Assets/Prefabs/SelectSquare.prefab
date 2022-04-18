@@ -64,6 +64,7 @@ MonoBehaviour:
   cell2: {fileID: 0}
   cell3: {fileID: 0}
   cell4: {fileID: 0}
+  scale: 0
 --- !u!1 &5306143075395555851
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9031700694692135338
 RectTransform:
   m_ObjectHideFlags: 0

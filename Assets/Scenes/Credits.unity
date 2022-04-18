@@ -503,9 +503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9447fd79cb00c4796867f91926d17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTrack: {fileID: 8300000, guid: 71673b893e117bf46bee861cf7d1db04, type: 3}
+  mainTrack: {fileID: 8300000, guid: d77d7fc6f524e3a4f8e6d83f6fce58be, type: 3}
   buttonSound: {fileID: 8300000, guid: 283bc1df85e1b2243856180271419b6c, type: 3}
-  success: {fileID: 8300000, guid: be158d67bb1228445b6f107ff6c43200, type: 3}
   mainTrackSource: {fileID: 584635629}
   effectSoundSource: {fileID: 584635628}
 --- !u!1 &964764122

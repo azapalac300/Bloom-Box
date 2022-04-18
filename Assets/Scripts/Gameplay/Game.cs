@@ -238,7 +238,8 @@ public class Game : MonoBehaviour {
             board.PlaceOnBoard(Game.SelectedSquare);
             if (!touching)
             {
-                SelectedSquare.Deselect();
+                SelectedSquare.Deselect(true);
+                SelectedSquare = null;
             }
         }
     }
@@ -275,10 +276,12 @@ public class Game : MonoBehaviour {
         {
             if (SelectedSquare != null)
             {
-                SelectedSquare.Deselect();
+                SelectedSquare.Deselect(true);
+                
             }
 
             SelectedSquare = s;
+            s.squareAudio.PlayPickupSound();
             s.selected = true;
         }
     }

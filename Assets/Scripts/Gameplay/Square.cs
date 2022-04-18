@@ -45,7 +45,9 @@ public class Square : MonoBehaviour {
     public bool shifting;
 
     private Vector3 moveDelta;
-    private SquareAudio squareAudio;
+
+    [HideInInspector]
+    public  SquareAudio squareAudio;
 
     private MatchDirection moveDirection;
 
@@ -109,9 +111,7 @@ public class Square : MonoBehaviour {
         Cell cell = Instantiate(cellPrefab, transform.position, Quaternion.identity).GetComponent<Cell>();
         cell.transform.localScale *= Game.Scale / 4;
         cell.transform.parent = transform;
-        cell.SetUp(this, position);
-
-        
+        cell.SetUp(this, position);   
         return cell;
     }
 
@@ -359,8 +359,13 @@ public class Square : MonoBehaviour {
         return flag;
     }
 
-    public void Deselect()
+    public void Deselect(bool audioFlag = false)
     {
+        if (audioFlag)
+        {
+            squareAudio.PlayDropSound();
+        }
+
         if (!placed)
         {
             transform.position = origPosition;
@@ -678,12 +683,13 @@ public class Square : MonoBehaviour {
     {
         if (ability.Type == SquareType.locked)
         {
+            squareAudio.PlayErrorSound();
             return;
         }
 
         if ((!rotating && selected) || bypass)
         {
-           
+            squareAudio.PlayRotateRSound();
             foreach (Cell cell in Cells)
             {
                 cell.LeftShift();
@@ -714,12 +720,13 @@ public class Square : MonoBehaviour {
     {
         if(ability.Type == SquareType.locked)
         {
+            squareAudio.PlayErrorSound();
             return;
         }
 
         if ((!rotating && selected)|| bypass)
         {
-            
+            squareAudio.PlayRotateLSound();
             foreach (Cell cell in Cells)
             {
                 cell.RightShift();

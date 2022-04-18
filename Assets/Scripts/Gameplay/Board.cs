@@ -393,11 +393,11 @@ public class Board : MonoBehaviour {
 
                         if (!Game.touching)
                         {
-
+                            
                             hand.RemoveSquare(s);
                             s.placed = true;
                             s.transform.position = GetGridPosition(s.coords);
-                           
+                            
                             s.transform.parent = transform;
                             s.Deselect();
                             s.highlighted = false;
@@ -423,7 +423,7 @@ public class Board : MonoBehaviour {
         
         AddSquareToBoard(s, true, neighbors);
 
-        CheckWin();
+        CheckWin(s);
     }
 
 
@@ -458,6 +458,7 @@ public class Board : MonoBehaviour {
             s.PaintWhiteCells(neighbors);
 
         }
+
     }
 
     public static void DislodgeSquare(Square s)
@@ -479,12 +480,19 @@ public class Board : MonoBehaviour {
                     neighbors[i].highlighted = highlight;
             }
         }
+
+        if (!s.highlighted)
+        {
+            //s.squareAudio.PlayMatchSound();
+        }
+
         s.highlighted = highlight;
     }
 
-    void CheckWin()
+    void CheckWin(Square s)
     {
-        bool playedSuccess = false;
+        bool playSuccess = false;
+        bool flag = true;
         for(int i = 0; i < goalMarkers.Count; i++)
         {
             int[] goalCoords = GetGridCoordinates(goalMarkers[i].transform.position);
@@ -492,16 +500,32 @@ public class Board : MonoBehaviour {
             
             if(squaresOnBoard[goalCoords[0], goalCoords[1]] == null)
             {
-                return;
+
+                flag = false;
             }
             else
             {
-                gameAudio.PlayGameSound(success);
-                playedSuccess = true;
+               
+                playSuccess = true;
             }
         }
 
-        
-        game.WinLevel();
+
+        if (flag)
+        {
+            game.WinLevel();
+        }
+        else
+        {
+            if (playSuccess) {
+                s.squareAudio.PlayGoalSound();
+            }
+            else
+            {
+                s.squareAudio.PlayPlaceSound();
+            }
+
+            
+        }
     }
 }

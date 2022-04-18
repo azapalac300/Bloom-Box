@@ -64,6 +64,7 @@ MonoBehaviour:
   cellD: {fileID: 0}
   coords: 0a0000000a000000
   shifting: 0
+  squareAudio: {fileID: 0}
 --- !u!114 &1109082181126807098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,12 +104,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f318f1870a47948bd5b8e38a0dd3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateLSound: {fileID: 0}
-  rotateRSound: {fileID: 0}
-  windSound: {fileID: 0}
-  paintSound: {fileID: 0}
-  errorSound: {fileID: 0}
-  pickupSound: {fileID: 0}
-  dropSound: {fileID: 0}
-  placeSounds: []
-  matchSounds: []
+  rotateLSound: {fileID: 8300000, guid: 585c9035f106efd428d0c9c84ec05d5d, type: 3}
+  rotateRSound: {fileID: 8300000, guid: 9a05a1a588289714381122f14c3376ed, type: 3}
+  windSound: {fileID: 8300000, guid: d822892f352f0044da64bdef67960e6e, type: 3}
+  paintSound: {fileID: 8300000, guid: 55e56d487a69d614cab428b16578ef68, type: 3}
+  errorSound: {fileID: 8300000, guid: e747fd761998351448f2efdde5bb1385, type: 3}
+  goalSound: {fileID: 8300000, guid: 847ff78dde1e66249a72fa1c085ad826, type: 3}
+  pickupSound: {fileID: 8300000, guid: 3ab0cae8820007b4ba4e4434d4533b28, type: 3}
+  placeSound: {fileID: 8300000, guid: 6bd8bc7b23183cb4e9c0429fbd7a40b3, type: 3}
+  dropSound: {fileID: 8300000, guid: 386645a8788ae4545b505eebfcb69314, type: 3}
+  matchSounds:
+  - {fileID: 8300000, guid: e55e87d8d2a532b4cb11e32d4493c88d, type: 3}
+  - {fileID: 8300000, guid: bbba482942b123d49b751bbd419cf395, type: 3}
+  - {fileID: 8300000, guid: 73f37a15f9e8d5e4da38381ad3e6174f, type: 3}
+  - {fileID: 8300000, guid: d1b0dc7c9428aa643b587bd9c0da2121, type: 3}
+  - {fileID: 8300000, guid: 82052a1d410e91e4ba5354fafb7ab0f9, type: 3}
+  - {fileID: 8300000, guid: 707bb74fa107ef540b01f5d95d1d56d0, type: 3}
+  - {fileID: 8300000, guid: 7eba3d1d8229fba4bbb4ae9a188aeeb0, type: 3}

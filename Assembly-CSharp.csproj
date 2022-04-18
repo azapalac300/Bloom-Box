@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\LevelDataAsset.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Levels.cs" />
     <Compile Include="Assets\Scripts\SwipeIndicator.cs" />
+    <Compile Include="Assets\Scripts\UI\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelectCell.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelectSquare.cs" />
     <Compile Include="Assets\Scripts\UI\Menu_UI.cs" />
