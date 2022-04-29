@@ -113,11 +113,11 @@ public class Board : MonoBehaviour {
 
    
 
-    public void PlaceOnBoard(Square square)
+    public bool PlaceOnBoard(Square square)
     {
         
         int[] touchCoords = GetGridCoordinates(square.transform.position);
-        FindSquarePlacement(square);
+        return FindSquarePlacement(square);
 
     }
 
@@ -332,7 +332,7 @@ public class Board : MonoBehaviour {
          };
     }
 
-    private void FindSquarePlacement(Square s)
+    private bool FindSquarePlacement(Square s)
     {
 
         Color c = Color.magenta;
@@ -406,6 +406,7 @@ public class Board : MonoBehaviour {
                             PlaceSquare(s);
 
                             Cleanup();
+                            return true;
                             
                         }
                    
@@ -415,6 +416,7 @@ public class Board : MonoBehaviour {
             
         }
 
+        return false;
     }
 
     public void PlaceSquare(Square s)
@@ -436,7 +438,7 @@ public class Board : MonoBehaviour {
         if (checkAbilities) {
             s.ability.CheckNeighborAbilities();
 
-            if (!s.shifting)
+            if (!s.shifting )
             {
                 s.ability.AffectNeighborsWithAbility();
 
@@ -524,8 +526,9 @@ public class Board : MonoBehaviour {
             {
                 s.squareAudio.PlayPlaceSound();
             }
-
-            
+         
         }
     }
+
+
 }

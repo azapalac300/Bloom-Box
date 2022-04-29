@@ -27,7 +27,7 @@ MonoBehaviour:
         cellB_Color: 2
         cellC_Color: 4
         cellD_Color: 4
-        type: 0
+        type: 4
         coords: 0a0000000d000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
@@ -38,7 +38,7 @@ MonoBehaviour:
         cellB_Color: 8
         cellC_Color: 8
         cellD_Color: 8
-        type: 0
+        type: 7
         coords: 0b0000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
         cellB_Color: 1
         cellC_Color: 2
         cellD_Color: 0
-        type: 0
+        type: 2
         coords: 090000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
@@ -84,6 +84,6 @@ MonoBehaviour:
         cellB_Color: 2
         cellC_Color: 2
         cellD_Color: 2
-        type: 16
+        type: 0
         coords: 0800000001000000
     tutorialData: 

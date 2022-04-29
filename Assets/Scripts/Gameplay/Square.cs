@@ -55,7 +55,6 @@ public class Square : MonoBehaviour {
     public Vector2 flatPosition { get { return ResourceManager.Flatten(transform.position); } }
 
 
-
     public List<Cell> Cells {
         get {
             return new List<Cell>
@@ -681,14 +680,16 @@ public class Square : MonoBehaviour {
     }
     public void FWDRotate(bool bypass)
     {
-        if (ability.Type == SquareType.locked)
-        {
-            squareAudio.PlayErrorSound();
-            return;
-        }
-
         if ((!rotating && selected) || bypass)
         {
+
+            if (ability.Type == SquareType.locked)
+            {
+                squareAudio.PlayErrorSound();
+                return;
+            }
+
+            rotating = true;
             squareAudio.PlayRotateRSound();
             foreach (Cell cell in Cells)
             {
@@ -718,14 +719,15 @@ public class Square : MonoBehaviour {
     }
     public void BWDRotate(bool bypass)
     {
-        if(ability.Type == SquareType.locked)
-        {
-            squareAudio.PlayErrorSound();
-            return;
-        }
-
         if ((!rotating && selected)|| bypass)
         {
+            if (ability.Type == SquareType.locked)
+            {
+                squareAudio.PlayErrorSound();
+                return;
+            }
+
+            rotating = true;
             squareAudio.PlayRotateLSound();
             foreach (Cell cell in Cells)
             {

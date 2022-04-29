@@ -16,6 +16,8 @@ public class GameAudio : MonoBehaviour
 
     public AudioSource effectSoundSource;
 
+    private List<AudioSource> audioSources;
+
     private float transitionTimer, transitionTime;
 
     private bool transitioning;
@@ -24,6 +26,8 @@ public class GameAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSources = new List<AudioSource>();
+
         Menu_UI.StartSceneTransition += StartSceneTransition;
 
         mainTrackSource.clip = mainTrack;
@@ -33,6 +37,7 @@ public class GameAudio : MonoBehaviour
         mainTrackSource.volume = 1.0f;
 
         mainTrackSource.Play();
+
     }
 
     // Update is called once per frame
@@ -50,6 +55,22 @@ public class GameAudio : MonoBehaviour
         }
 
 
+        List<AudioSource> activeSources = new List<AudioSource>();
+        //Clean up inactive audio sources
+        foreach(AudioSource source in audioSources)
+        {
+            if (!source.isPlaying)
+            {
+                Destroy(source);
+
+            }
+            else
+            {
+                activeSources.Add(source);
+            }
+        }
+
+        audioSources = activeSources;
     }
 
 
@@ -63,8 +84,26 @@ public class GameAudio : MonoBehaviour
     public void PlayGameSound(AudioClip clip)
     {
 
-        effectSoundSource.clip = clip;
-        effectSoundSource.Play();
+        bool needNewSource = true;
+        foreach(AudioSource source in audioSources)
+        {
+
+            if (!source.isPlaying)
+            {
+                source.clip = clip;
+                source.Play();
+                needNewSource = false;
+            }
+        }
+
+        if (needNewSource)
+        {
+            AudioSource newSource = gameObject.AddComponent<AudioSource>();
+            newSource.clip = clip;
+            newSource.Play();
+            Debug.Log("Playing " + clip.name);
+            audioSources.Add(newSource);
+        }
     }
 
     public void PlayButtonSound()

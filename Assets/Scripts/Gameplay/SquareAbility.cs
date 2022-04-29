@@ -122,6 +122,7 @@ public class SquareAbility : MonoBehaviour
 
     public void ActivateAbilityOnSquare(SquareType activatorType, ref bool flag)
     {
+        
         if (Type == SquareType.locked)
         {
             return;
@@ -180,8 +181,10 @@ public class SquareAbility : MonoBehaviour
             case SquareType.paint_wild:
                 square.PaintSquare(CellColor.wild);
                 squareAudio.PlayPaintSound();
+                Debug.Log("Paint wild!");
                 flag = true;
                 break;
+
             #endregion
             #region other abilities
             case SquareType.rotate_right:
@@ -229,17 +232,41 @@ public class SquareAbility : MonoBehaviour
     {
         bool abilityHasTriggered = false;
         List<Square> neighbors = Board.GetNeighborSquares(square.coords);
+
+        List<Square> activeNeigbors = new List<Square>();
         for (int i = 0; i < neighbors.Count; i++)
         {
             if (neighbors[i] != null)
             {
 
-                ActivateAbilityOnSquare(neighbors[i].ability.Type, ref abilityHasTriggered);
-
+                if(neighbors[i].ability.Type != SquareType.normal && neighbors[i].ability.Type != SquareType.locked)
+                {
+                    activeNeigbors.Add(neighbors[i]);
+                }
+               
             }
         }
+
+        if(activeNeigbors.Count == 1)
+        {
+            ActivateAbilityOnSquare(activeNeigbors[0].ability.Type, ref abilityHasTriggered);
+        }else if(activeNeigbors.Count > 1)
+        {
+            for(int i = 0; i < neighbors.Count; i++)
+            {
+                ActivateAbilityOnSquare(activeNeigbors[0].ability.Type, ref abilityHasTriggered);
+            }
+        }
+
         return abilityHasTriggered;
     }
+
+    private void ActivateMultiAbilitiesOnSquare(List<Square> neighbors, Square s)
+    {
+
+    }
+
+
 
     public bool AffectNeighborsWithAbility()
     {
@@ -253,6 +280,7 @@ public class SquareAbility : MonoBehaviour
 
             }
         }
+
 
         return abilityHasTriggered;
     }

@@ -4,14 +4,35 @@ using UnityEngine;
 
 public class LevelSelect : MonoBehaviour
 {
-    [SerializeField]
-    private float scale;
+     [SerializeField]
+     private float scale;
 
-    public static float Scale { get; private set; }
+     public GameObject levelSelectSquarePrefab;
+
+     public static float Scale { get; private set; }
+
+    private int nLevels;
+
+    public GameObject marker;
+
+    private GameObject mask;
+
+    public float markerOffsetX, markerOffsetY;
+
     private void Awake()
     {
         Scale = scale;
+        mask = GameObject.Find("Mask");
+
+
+        SpawnLevelSelectButtons();
     }
+
+    public int GetNLevels()
+    {
+        return 2;
+    }
+
 
     void Start()
     {
@@ -22,5 +43,16 @@ public class LevelSelect : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SelectLevel()
+    {
+
+    }
+
+
+    public void SpawnLevelSelectButtons()
+    {
+
     }
 }

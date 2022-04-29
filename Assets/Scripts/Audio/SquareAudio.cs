@@ -16,6 +16,7 @@ public class SquareAudio : MonoBehaviour
     {
         gameAudio = GameObject.Find("Main Camera").GetComponent<GameAudio>();
     }
+
     public void PlayRotateLSound()
     {
         gameAudio.PlayGameSound(rotateLSound);

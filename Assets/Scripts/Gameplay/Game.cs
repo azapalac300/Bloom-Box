@@ -235,12 +235,14 @@ public class Game : MonoBehaviour {
 
         if (Game.SelectedSquare != null)
         {
-            board.PlaceOnBoard(Game.SelectedSquare);
+            bool audioFlag = board.PlaceOnBoard(Game.SelectedSquare);
+          
             if (!touching)
             {
-                SelectedSquare.Deselect(true);
+                SelectedSquare.Deselect(!audioFlag);
                 SelectedSquare = null;
             }
+           
         }
     }
 
