@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75.1, y: 176.2}
+  m_AnchoredPosition: {x: -58.5, y: 175.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &280025171
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -991,8 +991,9 @@ MonoBehaviour:
   levelSelectSquarePrefab: {fileID: 297789171933927195, guid: e8568e5ac2fef8c46b6b7febf5da1839,
     type: 3}
   marker: {fileID: 280025169}
-  markerOffsetX: 165
-  markerOffsetY: 120
+  mask: {fileID: 2035120740}
+  markerOffsetX: 250
+  markerOffsetY: -200
 --- !u!1 &2035120740
 GameObject:
   m_ObjectHideFlags: 0

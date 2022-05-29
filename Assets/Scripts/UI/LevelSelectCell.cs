@@ -2,18 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectCell : MonoBehaviour
 {
-    public CellColor color;
+    public CellColor unlockedColor;
+    private CellColor color;
+
     public Image image;
     private LevelSelectSquare parentSquare;
     Position position;
+    private int levelNum;
+    public Text levelNumText;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        image.color = Cell.SelectColor(color);
+        //PickRandomColor();
+        //image.color = Cell.SelectColor(color);
+        levelNumText.text = (levelNum + 1).ToString();
+    }
+
+
+    public void PickRandomColor()
+    {
+
+        CellColor[] colorChoices = new CellColor[] {CellColor.blue, CellColor.cyan, CellColor.red, CellColor.green,
+        CellColor.orange, CellColor.purple};
+
+        color = colorChoices[Random.Range(0, colorChoices.Length)];
     }
 
     // Update is called once per frame
@@ -22,13 +41,22 @@ public class LevelSelectCell : MonoBehaviour
         
     }
 
+    public void LoadSelectedLevel()
+    {
+        var playSettings = Resources.Load<PlaySettings>("Settings");
+        playSettings.SetCurrentLevel(levelNum);
+        SceneManager.LoadScene("MainScene");
+    }
+    
 
-    public void SetUp(LevelSelectSquare square, Position startPosition)
+    public void SetUp(LevelSelectSquare square, Position startPosition, int levelNum)
     {
         position = startPosition;
         parentSquare = square;
        
         transform.Translate((Vector2)transform.position - square.Center + (PositionVector * 28f));
+        this.levelNum = levelNum;
+        PickRandomColor();
         UpdateColor(color);
     }
 
@@ -74,7 +102,7 @@ public class LevelSelectCell : MonoBehaviour
                 break;
         }
 
-        //Debug.Log(spriteName);
+        Debug.Log(spriteName);
         Sprite sprite = Resources.Load<Sprite>("Petals/" + spriteName);
         image.sprite = sprite;
     }

@@ -11,26 +11,23 @@ public class LevelSelect : MonoBehaviour
 
      public static float Scale { get; private set; }
 
-    private int nLevels;
 
     public GameObject marker;
 
-    private GameObject mask;
+    public GameObject mask;
 
     public float markerOffsetX, markerOffsetY;
 
     private void Awake()
     {
         Scale = scale;
-        mask = GameObject.Find("Mask");
-
 
         SpawnLevelSelectButtons();
     }
 
     public int GetNLevels()
     {
-        return 2;
+        return 16;
     }
 
 
@@ -53,6 +50,15 @@ public class LevelSelect : MonoBehaviour
 
     public void SpawnLevelSelectButtons()
     {
+        int buttonsToSpawn = GetNLevels()/4;
 
+        for(int i = 0; i < buttonsToSpawn; i++)
+        {
+            GameObject g = Instantiate(levelSelectSquarePrefab, marker.transform.position, Quaternion.identity);
+            g.transform.SetParent(mask.transform);
+            g.GetComponent<LevelSelectSquare>().SetUpCells(i*4);
+            marker.transform.position += new Vector3(markerOffsetX, markerOffsetY, 0);
+            markerOffsetX = -1 * markerOffsetX;
+        }
     }
 }

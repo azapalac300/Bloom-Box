@@ -11,34 +11,21 @@ public class LevelSelectSquare : MonoBehaviour
 
     public Vector2 Center { get { return transform.position; } }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetUpCells(int startingIndex)
     {
-        SetUpCells();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetUpCells()
-    {
-        cell1 = InitializeCell(Position.A);
-        cell2 = InitializeCell(Position.B);
-        cell3 = InitializeCell(Position.C);
-        cell4 = InitializeCell(Position.D);
-
+        cell1 = InitializeCell(Position.A, startingIndex);
+        cell2 = InitializeCell(Position.B, startingIndex + 1);
+        cell4 = InitializeCell(Position.D, startingIndex + 2);
+        cell3 = InitializeCell(Position.C, startingIndex + 3);
     }
 
 
-    LevelSelectCell InitializeCell(Position position)
+    LevelSelectCell InitializeCell(Position position, int index)
     {
         LevelSelectCell cell = Instantiate(levelSelectCellPrefab, transform.position, Quaternion.identity).GetComponent<LevelSelectCell>();
         cell.transform.localScale *= LevelSelect.Scale / 4;
-        cell.transform.parent = transform;
-        cell.SetUp(this, position);
+        cell.transform.SetParent(transform);
+        cell.SetUp(this, position, index);
         return cell;
     }
 

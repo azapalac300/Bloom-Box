@@ -101,7 +101,7 @@ public class GameAudio : MonoBehaviour
             AudioSource newSource = gameObject.AddComponent<AudioSource>();
             newSource.clip = clip;
             newSource.Play();
-            Debug.Log("Playing " + clip.name);
+            //Debug.Log("Playing " + clip.name);
             audioSources.Add(newSource);
         }
     }
