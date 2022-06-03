@@ -233,7 +233,7 @@ public class SquareAbility : MonoBehaviour
         bool abilityHasTriggered = false;
         List<Square> neighbors = Board.GetNeighborSquares(square.coords);
 
-        List<Square> activeNeigbors = new List<Square>();
+        List<Square> activeNeighbors = new List<Square>();
         for (int i = 0; i < neighbors.Count; i++)
         {
             if (neighbors[i] != null)
@@ -241,20 +241,24 @@ public class SquareAbility : MonoBehaviour
 
                 if(neighbors[i].ability.Type != SquareType.normal && neighbors[i].ability.Type != SquareType.locked)
                 {
-                    activeNeigbors.Add(neighbors[i]);
+                    activeNeighbors.Add(neighbors[i]);
                 }
                
             }
         }
 
-        if(activeNeigbors.Count == 1)
+        if(activeNeighbors.Count == 1)
         {
-            ActivateAbilityOnSquare(activeNeigbors[0].ability.Type, ref abilityHasTriggered);
-        }else if(activeNeigbors.Count > 1)
+            ActivateAbilityOnSquare(activeNeighbors[0].ability.Type, ref abilityHasTriggered);
+        }else if(activeNeighbors.Count > 1)
         {
-            for(int i = 0; i < neighbors.Count; i++)
+            for(int i = 0; i < activeNeighbors.Count; i++)
             {
-                ActivateAbilityOnSquare(activeNeigbors[0].ability.Type, ref abilityHasTriggered);
+                try { ActivateAbilityOnSquare(activeNeighbors[i].ability.Type, ref abilityHasTriggered); }
+                catch(System.Exception e)
+                {
+                    Debug.LogError(e.ToString());
+                }
             }
         }
 

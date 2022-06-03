@@ -176,7 +176,7 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -6.3765845
+          x: -9.05749
           y: -20.832193
           z: 0
         cellA_Color: 4
@@ -184,4 +184,5 @@ MonoBehaviour:
         cellC_Color: 4
         cellD_Color: 4
         type: 0
-        coords: 0700000001000000
+        coords: 0600000001000000
+    tutorialData: 

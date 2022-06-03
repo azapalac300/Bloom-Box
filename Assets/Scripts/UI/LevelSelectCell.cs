@@ -102,7 +102,6 @@ public class LevelSelectCell : MonoBehaviour
                 break;
         }
 
-        Debug.Log(spriteName);
         Sprite sprite = Resources.Load<Sprite>("Petals/" + spriteName);
         image.sprite = sprite;
     }
