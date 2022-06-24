@@ -44,29 +44,36 @@ public class SquareAbility : MonoBehaviour
         switch (Type)
         {
             case SquareType.normal:
-                return;
+              
+                break;
             #region paint abilities
             case SquareType.paint_red:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.red;
+                
                 break;
 
             case SquareType.paint_blue:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.blue;
+                
                 break;
             case SquareType.paint_cyan:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.cyan;
+                
                 break;
             case SquareType.paint_green:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.green;
+                
                 break;
             case SquareType.paint_orange:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.orange;
+
                 break;
+
             case SquareType.paint_purple:
                 iconCandidate = Resources.Load<GameObject>("Paint");
                 iconCandidate.GetComponentInChildren<PaintBrush>().color = CellColor.purple;
@@ -98,17 +105,27 @@ public class SquareAbility : MonoBehaviour
 
             case SquareType.wind_left:
                 iconCandidate = Resources.Load<GameObject>("WindLeft");
+               
                 break;
 
             case SquareType.wind_right:
                 iconCandidate = Resources.Load<GameObject>("WindRight");
+                
                 break;
 
             case SquareType.locked:
                 iconCandidate = Resources.Load<GameObject>("Lock");
+                
                 break;
 
                 #endregion
+        }
+
+
+        if (icon != null)
+        {
+            Destroy(icon);
+            icon = null;
         }
 
         if (iconCandidate != null)
@@ -135,51 +152,51 @@ public class SquareAbility : MonoBehaviour
 
             #region paint abilities:
             case SquareType.paint_red:
-                square.PaintSquare(CellColor.red);
+                square.QueuePaint(CellColor.red);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_blue:
 
-                square.PaintSquare(CellColor.blue);
+                square.QueuePaint(CellColor.blue);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
 
             case SquareType.paint_cyan:
-                square.PaintSquare(CellColor.cyan);
+                square.QueuePaint(CellColor.cyan);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_orange:
-                square.PaintSquare(CellColor.orange);
+                square.QueuePaint(CellColor.orange);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_green:
-                square.PaintSquare(CellColor.green);
+                square.QueuePaint(CellColor.green);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_purple:
-                square.PaintSquare(CellColor.purple);
+                square.QueuePaint(CellColor.purple);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_dead:
-                square.PaintSquare(CellColor.dead);
+                square.QueuePaint(CellColor.dead);
                 squareAudio.PlayPaintSound();
                 flag = true;
                 break;
 
             case SquareType.paint_wild:
-                square.PaintSquare(CellColor.wild);
+                square.QueuePaint(CellColor.wild);
                 squareAudio.PlayPaintSound();
                 Debug.Log("Paint wild!");
                 flag = true;
@@ -198,25 +215,25 @@ public class SquareAbility : MonoBehaviour
                 break;
 
             case SquareType.wind_up:
-                square.Shift(MatchDirection.up);
+                square.SetupShift(MatchDirection.up);
                 squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_down:
-                square.Shift(MatchDirection.down);
+                square.SetupShift(MatchDirection.down);
                 squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_left:
-                square.Shift(MatchDirection.left);
+                square.SetupShift(MatchDirection.left);
                 squareAudio.PlayWindSound();
                 flag = true;
                 break;
 
             case SquareType.wind_right:
-                square.Shift(MatchDirection.right);
+                square.SetupShift(MatchDirection.right);
                 squareAudio.PlayWindSound();
                 flag = true;
                 break;
@@ -247,11 +264,8 @@ public class SquareAbility : MonoBehaviour
             }
         }
 
-        if(activeNeighbors.Count == 1)
-        {
-            ActivateAbilityOnSquare(activeNeighbors[0].ability.Type, ref abilityHasTriggered);
-        }else if(activeNeighbors.Count > 1)
-        {
+       // ActivateMultiAbilitiesOnSquare(activeNeighbors);
+
             for(int i = 0; i < activeNeighbors.Count; i++)
             {
                 try { ActivateAbilityOnSquare(activeNeighbors[i].ability.Type, ref abilityHasTriggered); }
@@ -260,15 +274,54 @@ public class SquareAbility : MonoBehaviour
                     Debug.LogError(e.ToString());
                 }
             }
-        }
+
 
         return abilityHasTriggered;
     }
 
-    private void ActivateMultiAbilitiesOnSquare(List<Square> neighbors, Square s)
+   /* private void ActivateMultiAbilitiesOnSquare(List<Square> activeNeighbors)
     {
+        Dictionary<SquareTypeCategory, List<SquareAbility>> abilitiesAroundSquare = new Dictionary<SquareTypeCategory, List<SquareAbility>>();
 
-    }
+        for(int i = 0; i < activeNeighbors.Count; i++)
+        {
+            if (!abilitiesAroundSquare.ContainsKey(activeNeighbors[i].ability.typeCategory)){
+
+                abilitiesAroundSquare.Add(activeNeighbors[i].ability.typeCategory, new List<SquareAbility> { activeNeighbors[i].ability});
+            }
+            else
+            {
+                abilitiesAroundSquare[activeNeighbors[i].ability.typeCategory].Add(activeNeighbors[i].ability);
+            }
+        }
+        
+
+        
+        foreach(KeyValuePair<SquareTypeCategory, List<SquareAbility>> pair in abilitiesAroundSquare)
+        {
+            if (pair.Value.Count > 1)
+            {
+                switch (pair.Key)
+                {
+
+                    case SquareTypeCategory.Rotate:
+                        //Queue Up rotate actions based on the number of rotates
+                        Debug.Log("Multiple Rotate Squares!");
+                        break;
+
+                    case SquareTypeCategory.Paint:
+                        Debug.Log("Multiple Paint Squares!");
+                        break;
+
+
+                    case SquareTypeCategory.Wind:
+                        Debug.Log("Multiple Wind Squares!");
+                        break;
+                }
+            }
+        }
+
+    }*/
 
 
 

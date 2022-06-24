@@ -99,4 +99,4 @@ MonoBehaviour:
         cellD_Color: 3
         type: 6
         coords: 0600000001000000
-    tutorialData: Framed flowers aren't affected by special flowers
+    tutorialData: Locked flowers aren't affected by special flowers

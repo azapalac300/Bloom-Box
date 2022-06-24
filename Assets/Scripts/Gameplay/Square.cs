@@ -20,10 +20,15 @@ public class Square : MonoBehaviour {
     private Vector3 highlightedScale;
     private Vector3 origScale;
 
+    private bool paintFlag;
+    private CellColor colorToPaint;
+
     public float currentScale { get; private set; }
 
 
     public event Action<Square> PlaceSquareOnBoard;
+
+    public List<RotateDirection> rotateQueue;
 
 
     [SerializeField]
@@ -43,13 +48,14 @@ public class Square : MonoBehaviour {
     private Vector3 origPosition;
     public bool rotating { get; private set; }
     public bool shifting;
+    private bool shiftSetUp;
 
     private Vector3 moveDelta;
 
     [HideInInspector]
     public  SquareAudio squareAudio;
 
-    private MatchDirection moveDirection;
+    //private MatchDirection moveDirection;
 
     public float radius { get { return Game.Scale * 5f; } }
     public Vector2 flatPosition { get { return ResourceManager.Flatten(transform.position); } }
@@ -68,9 +74,11 @@ public class Square : MonoBehaviour {
     // Use this for initialization 
     //Initialize all cells
     void Start() {
+        rotateQueue = new List<RotateDirection>();
         squareAudio = GetComponent<SquareAudio>();
-
+        colorToPaint = CellColor.white;
         currentScale = 1f;
+       
         SetUpCells();
        
 
@@ -159,7 +167,7 @@ public class Square : MonoBehaviour {
         {
             transform.Translate(moveDelta * Game.ShiftSpeed * Time.deltaTime);
             Debug.DrawLine(transform.position, transform.position + moveDelta*10, Color.red);
-            if (CheckShiftCollision(moveDirection))
+            if (CheckShiftCollision(moveDelta))
             {
                 shifting = false;
                 PlaceSquareOnBoard?.Invoke(this) ;
@@ -206,7 +214,6 @@ public class Square : MonoBehaviour {
 
 
         UpdateColors();
-       
 
         //If Square is too far from the play area, delete it
         if (Mathf.Abs(transform.position.x) > 200f || Mathf.Abs(transform.position.y) > 200f)
@@ -215,7 +222,43 @@ public class Square : MonoBehaviour {
         }
     }
 
-  
+
+    public void QueuePaint(CellColor cellColor)
+    {
+        paintFlag = true;
+        colorToPaint = ResourceManager.AddCellColors(colorToPaint, cellColor);
+    }
+
+    private void LateUpdate()
+    {
+        if (paintFlag)
+        {
+            PaintSquare(colorToPaint);
+            colorToPaint = CellColor.white;
+            paintFlag = false;
+        }
+
+
+        if(rotateQueue.Count > 0 && !rotating)
+        {
+            RotateDirection dir = rotateQueue[0];
+            rotateQueue.Remove(rotateQueue[0]);
+
+            if(dir == RotateDirection.FWD)
+            {
+                ExecuteFWDRotate();
+            }else if(dir == RotateDirection.BWD)
+            {
+                ExecuteBWDRotate();
+            }
+        }
+
+        if(Vector3.Magnitude(moveDelta) > 0.01f)
+        {
+            Shift();
+        }
+    }
+
 
     void UpdateColors()
     {
@@ -602,7 +645,7 @@ public class Square : MonoBehaviour {
         ability.SetType(data.type);
     }
 
-    public void PaintSquare(CellColor color)
+    private void PaintSquare(CellColor color)
     {
         aColor = color;
         cellA.UpdateColor(color);
@@ -619,7 +662,19 @@ public class Square : MonoBehaviour {
         cellD.UpdateColor(color);
     }
 
-    public void Shift(MatchDirection moveDirection)
+
+   
+
+    public void Shift()
+    {
+        if (!CheckShiftCollision(moveDelta))
+        {
+            Board.DislodgeSquare(this);
+            shifting = true;
+        }
+    }
+
+    public void SetupShift(MatchDirection moveDirection)
     {
         int x = 0, y = 0;
 
@@ -646,32 +701,101 @@ public class Square : MonoBehaviour {
                 break;
         }
 
-        moveDelta = new Vector3(x, y, 0);
-     
-        this.moveDirection = moveDirection;
-        if (!CheckShiftCollision(moveDirection))
+        moveDelta += new Vector3(x, y, 0);
+
+        if (moveDelta.magnitude > 0.001f)
         {
-            Board.DislodgeSquare(this);
-            shifting = true;
+            moveDelta = moveDelta.normalized;
         }
+
+        shiftSetUp = true;
     }
 
-    private bool CheckShiftCollision(MatchDirection moveDirection)
+    private bool CheckShiftCollision(Vector2 shiftDirection)
     {
         List<Square> neighbors = Board.GetNeighborSquares(coords);
+        List<Square> diagNeighbors = Board.GetDiagNeighborSquares(coords);
 
         Vector3 coordPos = Board.GetGridPosition(coords);
-        int index = (int)moveDirection;
 
-       if ( neighbors[index] != null && (Vector3.Distance(transform.position, coordPos) < 0.2f))
+        List<int> neighborIndices = new List<int>();
+        List<int> diagNeighborIndices = new List<int>();
+
+
+        #region handle orthogonal collision
+        if (shiftDirection.x > 0.01f)
         {
-            transform.position = coordPos;
-            return true;
+            neighborIndices.Add((int)MatchDirection.right);
         }
-        else
+
+
+        if (shiftDirection.x < -0.01f)
         {
+            neighborIndices.Add((int)MatchDirection.left);
+        }
+
+        if (shiftDirection.y < -0.01f)
+        {
+            neighborIndices.Add((int)MatchDirection.down);
+        }
+
+        if (shiftDirection.y > 0.01f)
+        {
+            neighborIndices.Add((int)MatchDirection.up);
+        }
+        #endregion
+
+        #region handle diagonal collision
+        if(shiftDirection.x > 0.01f && shiftDirection.y > 0.01f)
+        {
+            diagNeighborIndices.Add((int)diagMatchDirection.upRight);
+        }
+
+        if (shiftDirection.x < -0.01f && shiftDirection.y > 0.01f)
+        {
+            diagNeighborIndices.Add((int)diagMatchDirection.upLeft);
+        }
+
+        if (shiftDirection.x > 0.01f && shiftDirection.y < -0.01f)
+        {
+            diagNeighborIndices.Add((int)diagMatchDirection.downRight);
+        }
+
+
+        if (shiftDirection.x < -0.01f && shiftDirection.y < -0.01f)
+        {
+            diagNeighborIndices.Add((int)diagMatchDirection.downLeft);
+        }
+
+
+        #endregion
+
+        //Go through the regular neighbors
+        for (int i = 0; i < neighborIndices.Count; i++)
+        {
+            int index = neighborIndices[i];
+            if (neighbors[index] != null && (Vector3.Distance(transform.position, coordPos) < 0.2f))
+            {
+                transform.position = coordPos;
+                moveDelta = Vector2.zero;
+                return true;
+            }
+        }
+
+        //Go through the diagonals
+        for(int i = 0; i < diagNeighborIndices.Count; i++)
+        {
+            int index = diagNeighborIndices[i];
+            if (diagNeighbors[index] != null && (Vector3.Distance(transform.position, coordPos) < 0.2f))
+            {
+                transform.position = coordPos;
+                moveDelta = Vector2.zero;
+                return true;
+            }
+        }
+      
             return false;
-        }
+        
     }
 
     public void FWDRotate()
@@ -682,37 +806,44 @@ public class Square : MonoBehaviour {
     {
         if ((!rotating && selected) || bypass)
         {
-
-            if (ability.Type == SquareType.locked)
-            {
-                squareAudio.PlayErrorSound();
-                return;
-            }
-
-            rotating = true;
-            squareAudio.PlayRotateRSound();
-            foreach (Cell cell in Cells)
-            {
-                cell.LeftShift();
-            }
-            //Update the data
-
-            Cell tempCell = cellA;
-            cellA = cellD;
-            cellD = cellC;
-            cellC = cellB;
-            cellB = tempCell;
-
-
-            CellColor tempColor = aColor;
-            aColor = dColor;
-            dColor = cColor;
-            cColor = bColor;
-            bColor = tempColor;
-
-            UpdateColors();
+            rotateQueue.Add(RotateDirection.FWD);
         }
     }
+
+
+    private void ExecuteFWDRotate()
+    {
+        if (ability.Type == SquareType.locked)
+        {
+            squareAudio.PlayErrorSound();
+            return;
+        }
+
+        rotating = true;
+        squareAudio.PlayRotateRSound();
+        foreach (Cell cell in Cells)
+        {
+            cell.LeftShift();
+        }
+        //Update the data
+
+        Cell tempCell = cellA;
+        cellA = cellD;
+        cellD = cellC;
+        cellC = cellB;
+        cellB = tempCell;
+
+
+        CellColor tempColor = aColor;
+        aColor = dColor;
+        dColor = cColor;
+        cColor = bColor;
+        bColor = tempColor;
+
+        UpdateColors();
+    }
+
+
     public void BWDRotate()
     {
         BWDRotate(false);
@@ -721,33 +852,39 @@ public class Square : MonoBehaviour {
     {
         if ((!rotating && selected)|| bypass)
         {
-            if (ability.Type == SquareType.locked)
-            {
-                squareAudio.PlayErrorSound();
-                return;
-            }
-
-            rotating = true;
-            squareAudio.PlayRotateLSound();
-            foreach (Cell cell in Cells)
-            {
-                cell.RightShift();
-            }
-
-            Cell tempCell = cellD;
-            cellD = cellA;
-            cellA = cellB;
-            cellB = cellC;
-            cellC = tempCell;
-
-            CellColor tempColor = dColor;
-            dColor = aColor;
-            aColor = bColor;
-            bColor = cColor;
-            cColor = tempColor;
-
-            UpdateColors();
+            rotateQueue.Add(RotateDirection.BWD);
         }
+    }
+
+
+    private void ExecuteBWDRotate()
+    {
+        if (ability.Type == SquareType.locked)
+        {
+            squareAudio.PlayErrorSound();
+            return;
+        }
+
+        rotating = true;
+        squareAudio.PlayRotateLSound();
+        foreach (Cell cell in Cells)
+        {
+            cell.RightShift();
+        }
+
+        Cell tempCell = cellD;
+        cellD = cellA;
+        cellA = cellB;
+        cellB = cellC;
+        cellC = tempCell;
+
+        CellColor tempColor = dColor;
+        dColor = aColor;
+        aColor = bColor;
+        bColor = cColor;
+        cColor = tempColor;
+
+        UpdateColors();
     }
 
 }

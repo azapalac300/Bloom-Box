@@ -5,7 +5,7 @@ using UnityEngine;
 public class SquareAudio : MonoBehaviour
 {
     public AudioClip rotateLSound, rotateRSound, windSound,
-        paintSound, errorSound, goalSound, pickupSound, placeSound, dropSound;
+        paintSound, errorSound, goalSound, pickupSound, placeSound, dropSound, victorySound;
 
 
     public AudioClip[] matchSounds;
@@ -34,7 +34,7 @@ public class SquareAudio : MonoBehaviour
 
     public void PlayPaintSound()
     {
-        gameAudio.PlayGameSound(paintSound);
+        gameAudio.PlayGameSound(placeSound);
     }
 
     public void PlayErrorSound()
@@ -50,7 +50,9 @@ public class SquareAudio : MonoBehaviour
 
     public void PlayPlaceSound()
     {
-        gameAudio.PlayGameSound(placeSound);
+        int index = Random.Range(0, matchSounds.Length);
+
+        gameAudio.PlayGameSound(matchSounds[index]);
     }
 
     public void PlayDropSound()
@@ -59,15 +61,13 @@ public class SquareAudio : MonoBehaviour
     }
 
 
-    public void PlayMatchSound()
-    {
-        int index = Random.Range(0, matchSounds.Length);
-
-        gameAudio.PlayGameSound(matchSounds[index]);
-    }
-
     public void PlayGoalSound()
     {
         gameAudio.PlayGameSound(goalSound);
+    }
+
+    public void PlayVictorySound()
+    {
+        gameAudio.PlayGameSound(victorySound);
     }
 }

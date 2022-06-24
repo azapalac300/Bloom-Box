@@ -113,6 +113,7 @@ MonoBehaviour:
   pickupSound: {fileID: 8300000, guid: 3ab0cae8820007b4ba4e4434d4533b28, type: 3}
   placeSound: {fileID: 8300000, guid: 6bd8bc7b23183cb4e9c0429fbd7a40b3, type: 3}
   dropSound: {fileID: 8300000, guid: 386645a8788ae4545b505eebfcb69314, type: 3}
+  victorySound: {fileID: 8300000, guid: be158d67bb1228445b6f107ff6c43200, type: 3}
   matchSounds:
   - {fileID: 8300000, guid: e55e87d8d2a532b4cb11e32d4493c88d, type: 3}
   - {fileID: 8300000, guid: bbba482942b123d49b751bbd419cf395, type: 3}

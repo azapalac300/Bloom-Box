@@ -66,4 +66,4 @@ MonoBehaviour:
         cellD_Color: 5
         type: 0
         coords: 0900000001000000
-    tutorialData: Framed flowers also can't rotate
+    tutorialData: Locked flowers also can't rotate

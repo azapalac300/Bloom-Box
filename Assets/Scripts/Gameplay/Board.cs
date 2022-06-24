@@ -332,6 +332,36 @@ public class Board : MonoBehaviour {
          };
     }
 
+    public static List<Square> GetDiagNeighborSquares(int[] coords)
+    {
+        int right = coords[0] + 1;
+        right = Clamp(right);
+
+        int up = coords[1] + 1;
+        up = Clamp(up);
+
+        int left = coords[0] - 1;
+        left = Clamp(left);
+
+        int down = coords[1] - 1;
+        down = Clamp(down);
+
+
+        Square upRightSquare = squaresOnBoard[right, up];
+        Square upLeftSquare = squaresOnBoard[left, up];
+        Square downRightSquare = squaresOnBoard[right, down];
+        Square downLeftSquare = squaresOnBoard[left, down];
+
+        return new List<Square>
+         {
+                upRightSquare,
+                upLeftSquare,
+                downRightSquare,
+                downLeftSquare
+
+         };
+    }
+
     private bool FindSquarePlacement(Square s)
     {
 
@@ -515,6 +545,7 @@ public class Board : MonoBehaviour {
 
         if (flag)
         {
+            s.squareAudio.PlayVictorySound();
             game.WinLevel();
         }
         else

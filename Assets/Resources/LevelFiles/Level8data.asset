@@ -21,7 +21,7 @@ MonoBehaviour:
       - position:
           testVector: {x: 0, y: 0, z: 0}
           x: 0
-          y: 16.000002
+          y: 9.6
           z: 0
         cellA_Color: 1
         cellB_Color: 1
@@ -31,8 +31,8 @@ MonoBehaviour:
         coords: 0a0000000e000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 11.999999
-          y: 4.0000005
+          x: 7.1999993
+          y: 2.4
           z: 0
         cellA_Color: 2
         cellB_Color: 2
@@ -55,12 +55,13 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -18.24042
-          y: -18.512781
+          x: -9.05749
+          y: -20.832193
           z: 0
         cellA_Color: 1
         cellB_Color: 1
         cellC_Color: 1
         cellD_Color: 1
         type: 0
-        coords: 0500000005000000
+        coords: 0600000001000000
+    tutorialData: 
