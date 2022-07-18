@@ -12,52 +12,49 @@ public class Menu_UI : MonoBehaviour
 
     public static Action<float> StartSceneTransition;
 
-    public void PlayGame()
+    public PrevScene prevScene;
+
+    public void Awake()
     {
-        StartSceneTransition?.Invoke(sceneLoadTime);
-        settings.loadedFromMenu = true;
-        StartCoroutine(LoadMainScene());
+        prevScene = Resources.Load<PrevScene>("PrevScene");
     }
 
-    IEnumerator LoadMainScene()
+    public void PlayGame()
     {
-        yield return new WaitForSeconds(sceneLoadTime);
-        SceneManager.LoadScene("MainScene");
+        settings.loadedFromMenu = true;
+        LoadSceneDelayed("MainScene");
     }
 
     public void LoadCredits()
     {
-        StartSceneTransition.Invoke(sceneLoadTime);
-        StartCoroutine(LoadCreditsScene());
-    }
-
-    IEnumerator LoadCreditsScene()
-    {
-        yield return new WaitForSeconds(sceneLoadTime);
-        SceneManager.LoadScene("Credits");
+        LoadSceneDelayed("Credits");
     }
 
     public void LoadMenu()
     {
-        StartSceneTransition?.Invoke(sceneLoadTime);
-        StartCoroutine(LoadMenuScene());
-    }
-
-    IEnumerator LoadMenuScene()
-    {
-        yield return new WaitForSeconds(sceneLoadTime);
-        SceneManager.LoadScene("MainMenu");
+        LoadSceneDelayed("MainMenu");
     }
 
     public void LoadLevels()
     {
-        StartSceneTransition.Invoke(sceneLoadTime);
-        StartCoroutine(LoadLevelsScene());
+        LoadSceneDelayed("LevelSelect");
     }
 
-    IEnumerator LoadLevelsScene()
+    public void LoadPrevScene()
+    {
+        LoadSceneDelayed(prevScene.prevSceneName);
+    }
+
+    public void LoadSceneDelayed(string sceneName)
+    {
+        prevScene.prevSceneName = SceneManager.GetActiveScene().name;
+        StartSceneTransition.Invoke(sceneLoadTime);
+        StartCoroutine(LoadScene(sceneName));
+    }
+
+    IEnumerator LoadScene(String sceneName)
     {
         yield return new WaitForSeconds(sceneLoadTime);
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene(sceneName);
     }
 }

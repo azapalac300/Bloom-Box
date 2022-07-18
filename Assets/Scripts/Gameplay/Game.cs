@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,6 +42,8 @@ public class Game : MonoBehaviour {
     public GameObject testIndicator;
 
     public PlaySettings settings;
+
+    public bool fullReset;
 
     public InputField input;
 
@@ -217,7 +220,13 @@ public class Game : MonoBehaviour {
 
             board.EditLevel();
         }
-        
+
+
+        if (fullReset)
+        {
+            settings.FullReset();
+            fullReset = false;
+        }
 	}
 
 
@@ -285,6 +294,18 @@ public class Game : MonoBehaviour {
             SelectedSquare = s;
             s.squareAudio.PlayPickupSound();
             s.selected = true;
+        }
+
+    }
+
+
+    public static void SelectSquareEdit(Square s)
+    {
+        if (touching)
+        {
+#if UNITY_EDITOR
+            Selection.activeGameObject = s.gameObject;
+#endif
         }
     }
 
@@ -358,7 +379,7 @@ public class Game : MonoBehaviour {
         if (levelToLoad < maxLevels)
         {
             levelNum = levelToLoad;
-            settings.SetCurrentLevel(levelToLoad);
+            settings.SetCurrentLevel(levelToLoad, mode == Mode.Edit);
             levelSerializer.SetUpLevel();
         }
         else

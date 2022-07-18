@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\Gameplay\Hand.cs" />
     <Compile Include="Assets\Scripts\Gameplay\LevelSerializer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PaintBrush.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\PlaySettings.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Square.cs" />
     <Compile Include="Assets\Scripts\Gameplay\SquareAbility.cs" />
@@ -72,6 +71,8 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\LevelData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\LevelDataAsset.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Levels.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\PlaySettings.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\PrevScene.cs" />
     <Compile Include="Assets\Scripts\SwipeIndicator.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelectCell.cs" />

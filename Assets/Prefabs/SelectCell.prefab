@@ -170,6 +170,7 @@ MonoBehaviour:
   unlockedColor: 0
   image: {fileID: 4539209520031058709}
   levelNumText: {fileID: 7043651359200831821}
+  button: {fileID: 6448016243973645146}
 --- !u!114 &6448016243973645146
 MonoBehaviour:
   m_ObjectHideFlags: 0

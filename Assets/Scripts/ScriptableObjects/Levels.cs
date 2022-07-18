@@ -45,7 +45,10 @@ public class Levels : ScriptableObject
 
         
     }
-
+    public int GetNLevels()
+    {
+        return list.Count;
+    }
 
     public Level_Data LoadLevel(int levelNum)
     {
@@ -59,7 +62,8 @@ public class Levels : ScriptableObject
         }
     }
 
-    public List<LevelDataAsset> list;
+    [SerializeField]
+    private List<LevelDataAsset> list;
 }
 
 #region serializable classes

@@ -6,17 +6,22 @@ public class LevelSelectSquare : MonoBehaviour
 {
     public GameObject levelSelectCellPrefab;
     public LevelSelectCell cell1, cell2, cell3, cell4;
+    
+    public LevelSelectCell[] cells { get { 
+            return new LevelSelectCell[] { cell1, cell2, cell3, cell4 };  
+        } }
 
     public float scale;
 
     public Vector2 Center { get { return transform.position; } }
 
-    public void SetUpCells(int startingIndex)
+    public void SetUpCells(int startingIndex, int nCells = 4)
     {
-        cell1 = InitializeCell(Position.A, startingIndex);
-        cell2 = InitializeCell(Position.B, startingIndex + 1);
-        cell4 = InitializeCell(Position.D, startingIndex + 2);
-        cell3 = InitializeCell(Position.C, startingIndex + 3);
+        for (int i = 0; i < nCells; i++)
+        {
+            cells[i] = InitializeCell((Position)i, startingIndex + i);
+        }
+        
     }
 
 

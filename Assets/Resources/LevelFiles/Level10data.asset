@@ -44,7 +44,7 @@ MonoBehaviour:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.480488
+          x: -9.05749
           y: -20.832193
           z: 0
         cellA_Color: 2
@@ -52,10 +52,10 @@ MonoBehaviour:
         cellC_Color: 2
         cellD_Color: 2
         type: 8
-        coords: 0700000001000000
+        coords: 0600000001000000
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -3.880488
+          x: -5.457491
           y: -20.832193
           z: 0
         cellA_Color: 1

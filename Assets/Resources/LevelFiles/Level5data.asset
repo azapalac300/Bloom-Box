@@ -25,23 +25,12 @@ MonoBehaviour:
           x: -2.4
           y: 0
           z: 0
-        cellA_Color: 7
-        cellB_Color: 7
-        cellC_Color: 7
-        cellD_Color: 7
+        cellA_Color: 4
+        cellB_Color: 4
+        cellC_Color: 1
+        cellD_Color: 1
         type: 0
         coords: 090000000a000000
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: -2.4
-          y: 2.4
-          z: 0
-        cellA_Color: 7
-        cellB_Color: 2
-        cellC_Color: 2
-        cellD_Color: 7
-        type: 0
-        coords: 090000000b000000
     handData:
       handSquares:
       - position:
@@ -49,10 +38,10 @@ MonoBehaviour:
           x: -9.05749
           y: -20.832193
           z: 0
-        cellA_Color: 4
-        cellB_Color: 3
-        cellC_Color: 6
-        cellD_Color: 1
+        cellA_Color: 1
+        cellB_Color: 4
+        cellC_Color: 3
+        cellD_Color: 6
         type: 0
         coords: 0600000001000000
       - position:
@@ -71,32 +60,10 @@ MonoBehaviour:
           x: -1.8574909
           y: -20.832193
           z: 0
-        cellA_Color: 7
-        cellB_Color: 3
-        cellC_Color: 6
+        cellA_Color: 2
+        cellB_Color: 6
+        cellC_Color: 3
         cellD_Color: 7
         type: 0
         coords: 0900000001000000
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: 1.7425089
-          y: -20.832193
-          z: 0
-        cellA_Color: 6
-        cellB_Color: 3
-        cellC_Color: 4
-        cellD_Color: 7
-        type: 0
-        coords: 0b00000001000000
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: 5.3425093
-          y: -20.832193
-          z: 0
-        cellA_Color: 2
-        cellB_Color: 2
-        cellC_Color: 5
-        cellD_Color: 6
-        type: 0
-        coords: 0c00000001000000
     tutorialData: 

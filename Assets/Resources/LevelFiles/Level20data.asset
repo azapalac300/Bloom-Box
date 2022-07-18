@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea119f1d672b85148ae088cb28967559, type: 3}
+  m_Name: Level20data
+  m_EditorClassIdentifier: 
+  data:
+    boardData:
+      goalSquareCoords:
+      - x: 10
+        y: 11
+      boardSquares:
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 2.4
+          y: 4.8
+          z: 0
+        cellA_Color: 0
+        cellB_Color: 0
+        cellC_Color: 0
+        cellD_Color: 0
+        type: 0
+        coords: 0b0000000c000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 2.4
+          y: 0
+          z: 0
+        cellA_Color: 0
+        cellB_Color: 0
+        cellC_Color: 0
+        cellD_Color: 0
+        type: 1
+        coords: 0b0000000a000000
+    handData:
+      handSquares:
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -9.05749
+          y: -20.832193
+          z: 0
+        cellA_Color: 0
+        cellB_Color: 0
+        cellC_Color: 0
+        cellD_Color: 0
+        type: 0
+        coords: 0600000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -5.457491
+          y: -20.832193
+          z: 0
+        cellA_Color: 0
+        cellB_Color: 0
+        cellC_Color: 0
+        cellD_Color: 0
+        type: 0
+        coords: 0800000001000000
+    tutorialData: Locked white petals can still change color

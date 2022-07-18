@@ -15,7 +15,9 @@ public class LevelSelectCell : MonoBehaviour
     private int levelNum;
     public Text levelNumText;
 
+    private PlaySettings settings;
 
+    public Button button;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +25,23 @@ public class LevelSelectCell : MonoBehaviour
         //PickRandomColor();
         //image.color = Cell.SelectColor(color);
         levelNumText.text = (levelNum + 1).ToString();
+
+        if (levelNum > settings.GetHighestUnlockedLevel())
+        {
+            levelNumText.text = "";
+
+            button.enabled = false;
+        }
     }
 
 
     public void PickRandomColor()
     {
+        if(levelNum > settings.GetHighestUnlockedLevel())
+        {
+            color = CellColor.dead;
+            return;
+        }
 
         CellColor[] colorChoices = new CellColor[] {CellColor.blue, CellColor.cyan, CellColor.red, CellColor.green,
         CellColor.orange, CellColor.purple};
@@ -43,14 +57,15 @@ public class LevelSelectCell : MonoBehaviour
 
     public void LoadSelectedLevel()
     {
-        var playSettings = Resources.Load<PlaySettings>("Settings");
-        playSettings.SetCurrentLevel(levelNum);
+        settings.SetCurrentLevel(levelNum);
         SceneManager.LoadScene("MainScene");
     }
     
 
     public void SetUp(LevelSelectSquare square, Position startPosition, int levelNum)
     {
+        settings = Resources.Load<PlaySettings>("Settings");
+
         position = startPosition;
         parentSquare = square;
        

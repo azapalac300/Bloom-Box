@@ -24,7 +24,7 @@ public class LevelSerializer : MonoBehaviour
 
     public void SetUpLevel()
     {
-        if (levels.list.Count > 0)
+        if (levels.GetNLevels() > 0)
         {
             LoadLevel();
         }
@@ -70,7 +70,7 @@ public class LevelSerializer : MonoBehaviour
     public void NewLevel()
     {
         game.HideMenu();
-        game.levelNum = levels.list.Count;
+        game.levelNum = levels.GetNLevels();
         game.maxLevels++;
         levels.AddLevel(new Level_Data());
 
@@ -86,7 +86,7 @@ public class LevelSerializer : MonoBehaviour
 
         game.board.UpdateBoardData(data.boardData);
         game.goalsLeft = game.board.goalMarkers.Count;
-        game.maxLevels = levels.list.Count;
+        game.maxLevels = levels.GetNLevels();
         game.tutorialText.text = data.tutorialData;
 
         if (data.handData != null)

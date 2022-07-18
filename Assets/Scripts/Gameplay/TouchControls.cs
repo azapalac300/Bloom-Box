@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class TouchControls : MonoBehaviour
 {
-    public SwipeIndicator swipeIndicator;
 
     public static Vector3 mainTouchPos;
 
@@ -15,10 +15,21 @@ public class TouchControls : MonoBehaviour
 
     public bool UsingTouch;
 
+    private float prevTouchDelta;
 
-    private Vector2 fingerStartPosition;
+    private const float touchDeltaThresh = 20f;
+    public static float TouchDelta { get { return touchDelta; } }
 
-    private Vector2 fingerEndPosition;
+    public static bool Touching { get { return Input.touchCount > 0;  } }
+
+    private static float touchDelta;
+
+    private Vector2 fingerStartPositionSwipe;
+    private Vector2 fingerStartPositionScroll;
+
+
+    private Vector2 fingerEndPositionSwipe;
+    private Vector2 fingerEndPositionScroll;
 
     private Dictionary<int, Touch> touches;
 
@@ -27,6 +38,7 @@ public class TouchControls : MonoBehaviour
     void Start()
     {
         touches = new Dictionary<int, Touch>();
+        touchDelta = 0;
     }
 
     // Update is called once per frame
@@ -35,6 +47,9 @@ public class TouchControls : MonoBehaviour
         HandleMainTouch();
 
         HandleSwipe();
+
+        DetectTouchDelta();
+
     }
 
 
@@ -86,14 +101,14 @@ public class TouchControls : MonoBehaviour
 
                 if(touch.phase == TouchPhase.Began)
                 {
-                    fingerStartPosition = touch.position;
-                    fingerEndPosition = touch.position;
+                    fingerStartPositionSwipe = touch.position;
+                    fingerEndPositionSwipe = touch.position;
                 }
-
 
                 if(touch.phase == TouchPhase.Ended)
                 {
-                    fingerEndPosition = touch.position;
+
+                    fingerEndPositionSwipe = touch.position;
                     DetectSwipe();
                 }
 
@@ -106,9 +121,10 @@ public class TouchControls : MonoBehaviour
         //Fires a swipe event if there's a swipe
         //For now only detect a swipe up or swipe down event.
 
-        Vector2 diffVector = fingerStartPosition - fingerEndPosition;
+        Vector2 diffVector = fingerStartPositionSwipe - fingerEndPositionSwipe;
 
         string displayString = diffVector.ToString();
+
         
         if(diffVector.y > ResourceManager.minSwipeDist)
         {
@@ -123,8 +139,33 @@ public class TouchControls : MonoBehaviour
             SwipeUpEvent?.Invoke();
         }
         
-        swipeIndicator.SetText(displayString);
     }
 
+    public void DetectTouchDelta()
+    {
+        if(Touching)
+        {
+            prevTouchDelta = touchDelta;
+            Touch touch = Input.GetTouch(0);
+            if(touch.phase == TouchPhase.Began )
+            {
+                fingerStartPositionScroll = touch.position;
+                fingerEndPositionScroll = touch.position;
+                touchDelta = 0;
+            }
+
+            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Stationary)
+            {
+                fingerEndPositionScroll = touch.position;
+                touchDelta = fingerEndPositionScroll.y - fingerStartPositionScroll.y;
+
+            }
+
+        }
+        else
+        {
+            touchDelta = 0;
+        }
+    }
   
 }

@@ -30,6 +30,8 @@ public class Square : MonoBehaviour {
 
     public List<RotateDirection> rotateQueue;
 
+    [SerializeField]
+    private bool rotateForward, rotateBackward;
 
     [SerializeField]
     private CellColor aColor, bColor, cColor, dColor;
@@ -150,7 +152,19 @@ public class Square : MonoBehaviour {
         //Can be shortened because all cells shift at once
         tray = inTray;
 
-        if (Input.GetKeyDown(KeyCode.R) )
+        if (rotateForward && Game.mode == Game.Mode.Edit)
+        {
+            FWDRotate(true);
+            rotateForward = false;
+        }
+
+        if (rotateBackward && Game.mode == Game.Mode.Edit)
+        {
+            BWDRotate(true);
+            rotateBackward = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
             FWDRotate();
         }
@@ -175,10 +189,9 @@ public class Square : MonoBehaviour {
             }
         }
 
-
+        float dist = Vector2.Distance(Game.worldTouchPosition, new Vector2(transform.position.x, transform.position.y));
         if (Game.mode == Game.Mode.Play || Game.mode == Game.Mode.Test)
         {
-            float dist = Vector2.Distance(Game.worldTouchPosition, new Vector2(transform.position.x, transform.position.y));
 
             if (placed)
             {
@@ -209,6 +222,14 @@ public class Square : MonoBehaviour {
                 {
                    // transform.localScale = origScale;
                 }
+            }
+        }
+
+        if (Game.mode == Game.Mode.Edit)
+        {
+            if (dist < Game.Scale)
+            {
+                Game.SelectSquareEdit(this);
             }
         }
 
@@ -613,6 +634,10 @@ public class Square : MonoBehaviour {
 
     bool MatchCells(Cell cell1, Cell cell2)
     {
+        if(cell1.color == CellColor.dead || cell2.color == CellColor.dead)
+        {
+            return false;
+        }
 
         if (cell1.color == cell2.color || cell1.color == CellColor.wild || cell2.color == CellColor.wild
             || cell1.color == CellColor.white || cell2.color == CellColor.white) {
@@ -804,7 +829,7 @@ public class Square : MonoBehaviour {
     }
     public void FWDRotate(bool bypass)
     {
-        if ((!rotating && selected) || bypass)
+        if (!rotating && (selected || bypass))
         {
             rotateQueue.Add(RotateDirection.FWD);
         }

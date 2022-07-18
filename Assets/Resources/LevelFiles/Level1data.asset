@@ -20,38 +20,27 @@ MonoBehaviour:
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -7.9999995
+          x: -4.8
           y: 0
           z: 0
         cellA_Color: 4
         cellB_Color: 1
-        cellC_Color: 2
+        cellC_Color: 1
         cellD_Color: 4
         type: 0
         coords: 080000000a000000
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: 0
-          y: 0
-          z: 0
-        cellA_Color: 1
-        cellB_Color: 4
-        cellC_Color: 4
-        cellD_Color: 2
-        type: 0
-        coords: 0a0000000a000000
     handData:
       handSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -18.24042
-          y: -18.512781
+          x: -9.05749
+          y: -20.832193
           z: 0
         cellA_Color: 2
         cellB_Color: 2
         cellC_Color: 1
         cellD_Color: 1
         type: 0
-        coords: 0500000005000000
+        coords: 0600000001000000
     tutorialData: While holding a flower, swipe up to rotate left and down to rotate
       right

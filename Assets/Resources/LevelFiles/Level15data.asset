@@ -60,10 +60,10 @@ MonoBehaviour:
           x: -1.8574909
           y: -20.832193
           z: 0
-        cellA_Color: 2
-        cellB_Color: 1
-        cellC_Color: 1
-        cellD_Color: 5
+        cellA_Color: 1
+        cellB_Color: 5
+        cellC_Color: 2
+        cellD_Color: 1
         type: 0
         coords: 0900000001000000
     tutorialData: Locked flowers also can't rotate
