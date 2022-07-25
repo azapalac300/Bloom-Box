@@ -1,0 +1,4 @@
+#Thu Jul 21 08:12:11 GMT-08:00 2022
+base.0=C\:\\Users\\azapa\\OneDrive\\Documents\\GitHub\\Bloom-Box\\Temp\\gradleOut\\launcher\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex

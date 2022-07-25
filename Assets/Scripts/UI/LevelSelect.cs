@@ -140,5 +140,6 @@ public class LevelSelect : MonoBehaviour
         g.GetComponent<LevelSelectSquare>().SetUpCells(startingIndex, nCells);
         marker.transform.position += new Vector3(markerOffsetX, markerOffsetY, 0);
         markerOffsetX = -1 * markerOffsetX;
+        topLimit.transform.position += new Vector3(0, -markerOffsetY, 0);
     }
 }

@@ -23,10 +23,10 @@ MonoBehaviour:
           x: 2.4
           y: 4.8
           z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
+        cellA_Color: 7
+        cellB_Color: 7
+        cellC_Color: 2
+        cellD_Color: 3
         type: 0
         coords: 0b0000000c000000
       - position:
@@ -34,11 +34,11 @@ MonoBehaviour:
           x: 2.4
           y: 0
           z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
-        type: 1
+        cellA_Color: 2
+        cellB_Color: 5
+        cellC_Color: 7
+        cellD_Color: 7
+        type: 0
         coords: 0b0000000a000000
     handData:
       handSquares:
@@ -47,10 +47,10 @@ MonoBehaviour:
           x: -9.05749
           y: -20.832193
           z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
+        cellA_Color: 3
+        cellB_Color: 2
+        cellC_Color: 5
+        cellD_Color: 2
         type: 0
         coords: 0600000001000000
       - position:
@@ -58,10 +58,10 @@ MonoBehaviour:
           x: -5.457491
           y: -20.832193
           z: 0
-        cellA_Color: 0
-        cellB_Color: 0
-        cellC_Color: 0
-        cellD_Color: 0
-        type: 0
+        cellA_Color: 8
+        cellB_Color: 8
+        cellC_Color: 5
+        cellD_Color: 8
+        type: 16
         coords: 0800000001000000
     tutorialData: Locked white petals can still change color

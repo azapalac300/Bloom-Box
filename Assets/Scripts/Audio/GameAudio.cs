@@ -22,10 +22,15 @@ public class GameAudio : MonoBehaviour
 
     private bool transitioning;
 
+    private float recencyTime = 0.2f;
+    private float recencyTimer = 0f;
+
+    public HashSet<string> clipNames;
 
     // Start is called before the first frame update
     void Start()
     {
+        clipNames = new HashSet<string>();
         audioSources = new List<AudioSource>();
 
         Menu_UI.StartSceneTransition += StartSceneTransition;
@@ -61,6 +66,11 @@ public class GameAudio : MonoBehaviour
         {
             if (!source.isPlaying)
             {
+                if (source.clip != null)
+                {
+                    clipNames.Remove(source.clip.name);
+                }
+
                 Destroy(source);
 
             }
@@ -69,7 +79,10 @@ public class GameAudio : MonoBehaviour
                 activeSources.Add(source);
             }
         }
-
+        if(recencyTimer > 0f)
+        {
+            recencyTimer -= Time.deltaTime;
+        }
         audioSources = activeSources;
     }
 
@@ -96,13 +109,20 @@ public class GameAudio : MonoBehaviour
             }
         }
 
-        if (needNewSource)
+
+        if (needNewSource && !clipNames.Contains(clip.name))
         {
             AudioSource newSource = gameObject.AddComponent<AudioSource>();
             newSource.clip = clip;
             newSource.Play();
             //Debug.Log("Playing " + clip.name);
+            foreach(AudioSource a in audioSources)
+            {
+                a.volume = a.volume / 2f;
+            }
             audioSources.Add(newSource);
+
+           
         }
     }
 
