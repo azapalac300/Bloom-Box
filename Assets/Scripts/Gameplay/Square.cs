@@ -695,7 +695,6 @@ public class Square : MonoBehaviour {
         if (!CheckShiftCollision(moveDelta))
         {
             Board.DislodgeSquare(this);
-            shifting = true;
         }
     }
 
@@ -734,6 +733,7 @@ public class Square : MonoBehaviour {
         }
 
         shiftSetUp = true;
+        shifting = true;
     }
 
     private bool CheckShiftCollision(Vector2 shiftDirection)

@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea119f1d672b85148ae088cb28967559, type: 3}
+  m_Name: Level26data
+  m_EditorClassIdentifier: 
+  data:
+    boardData:
+      goalSquareCoords:
+      - x: 8
+        y: 5
+      boardSquares:
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -2.4
+          y: 9.6
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 0
+        coords: 090000000e000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 7.1999993
+          y: 9.6
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0d0000000e000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 4.7999997
+          y: -12
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0c00000005000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 2.4
+          y: 4.8
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0b0000000c000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -7.2
+          y: 2.4
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 070000000b000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 0
+          y: -9.6
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0a00000006000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -7.2
+          y: -14.400002
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0700000004000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -2.4
+          y: -14.400002
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0900000004000000
+    handData:
+      handSquares:
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -9.05749
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 4
+        coords: 0600000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -5.457491
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 6
+        coords: 0800000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -1.8574909
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 5
+        coords: 0900000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 1.7425089
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 3
+        coords: 0b00000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 5.3425093
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 5
+        coords: 0c00000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 8.9425125
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 4
+        coords: 0e00000001000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -9.057489
+          y: -23.832193
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 5
+        coords: 0600000000000000
+    tutorialData: 

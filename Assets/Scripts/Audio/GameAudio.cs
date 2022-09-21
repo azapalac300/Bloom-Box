@@ -41,7 +41,10 @@ public class GameAudio : MonoBehaviour
 
         mainTrackSource.volume = 1.0f;
 
-        mainTrackSource.Play();
+        if (Game.mode != Game.Mode.Edit)
+        {
+            mainTrackSource.Play();
+        }
 
     }
 

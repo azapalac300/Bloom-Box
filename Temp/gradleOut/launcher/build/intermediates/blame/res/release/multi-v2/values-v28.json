@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\azapa\\OneDrive\\Documents\\GitHub\\Bloom-Box\\Temp\\gradleOut\\launcher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v28\\values-v28.xml",
+            "outputFile": "C:\\Users\\azapa\\Bloom Box\\Temp\\gradleOut\\launcher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v28\\values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\azapa\\OneDrive\\Documents\\GitHub\\Bloom-Box\\Temp\\gradleOut\\launcher\\src\\main\\res\\values-v28\\styles.xml",
+                    "source": "C:\\Users\\azapa\\Bloom Box\\Temp\\gradleOut\\launcher\\src\\main\\res\\values-v28\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "0",

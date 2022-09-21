@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hand : MonoBehaviour {
     public GameObject squarePrefab;
     public GameObject handPositionMarker;
- 
+    public Text squareCountText;
 
     public GameObject squaresTray;
     public GameObject handEditControls;
@@ -15,10 +16,13 @@ public class Hand : MonoBehaviour {
     public bool addHand;
     public bool loadHand;
 
+    private const int MAX_SQUARES_PER_LINE = 6;
+
     public static Bounds trayBounds { get; private set; }
     public List<Square> squaresInHand;
 
-    private float xOffset;
+    private float xOffset, yOffset;
+    private int squareCount;
     private Vector2 origPosition;
     private LevelSerializer levelSerializer;
     
@@ -30,7 +34,9 @@ public class Hand : MonoBehaviour {
         levelSerializer = GameObject.Find("Game").GetComponent<LevelSerializer>();
         trayBounds = squaresTray.GetComponent<BoxCollider>().bounds;
 
-        xOffset = Game.Scale * 3;
+        xOffset = Game.Scale * 3f;
+        yOffset = Game.Scale * 2.5f;
+        squareCount = 0;
 	}
 
     public void DrawNewSquare()
@@ -45,14 +51,21 @@ public class Hand : MonoBehaviour {
             square.transform.position = position;
             square.transform.parent = transform;
             square.SetUpCells();
-            MoveMarkerForward();
+            squareCount++;
+            MoveMarkerForward(squareCount);
         }
         
     }
 
-    private void MoveMarkerForward()
+    private void MoveMarkerForward(int cellCount)
     {
         handPositionMarker.transform.Translate(new Vector2(xOffset, 0));
+
+        if(cellCount % 6 == 0f && cellCount > 0)
+        {
+            handPositionMarker.transform.position = origPosition;
+            handPositionMarker.transform.Translate(new Vector2(0, -yOffset));
+        }
     }
 
     private void MoveMarkerBack()
@@ -141,6 +154,7 @@ public class Hand : MonoBehaviour {
             handEditControls.SetActive(false);
         }
 
+        squareCountText.text = "Square Count: " + squareCount;
 	}
 
     
@@ -148,13 +162,14 @@ public class Hand : MonoBehaviour {
 
     void ResetHand()
     {
+        
         for (int i = 0; i < squaresInHand.Count; i++)
         {
             Destroy(squaresInHand[i].gameObject);
         }
 
         squaresInHand.Clear();
-
+        squareCount = 0;
         Fill();
     }
 }

@@ -8,7 +8,7 @@
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="30" />
+        android:targetSdkVersion="29" />
 
     <uses-feature android:glEsVersion="0x00030000" />
     <uses-feature
@@ -30,7 +30,6 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
             android:hardwareAccelerated="false"
             android:launchMode="singleTask"
-            android:resizeableActivity="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/UnityThemeSelector" >
             <intent-filter>
@@ -54,17 +53,11 @@
             android:name="unity.splash-enable"
             android:value="True" />
         <meta-data
-            android:name="unity.launch-fullscreen"
-            android:value="True" />
-        <meta-data
-            android:name="unity.allow-resizable-window"
-            android:value="False" />
-        <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
         <meta-data
             android:name="unity.build-id"
-            android:value="da9f8221-8cfa-4006-ba85-a2d3d7871f44" />
+            android:value="e1a7336b-6f71-443d-9326-dfff50bf609e" />
     </application>
 
 </manifest>

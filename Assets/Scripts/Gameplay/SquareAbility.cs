@@ -264,66 +264,13 @@ public class SquareAbility : MonoBehaviour
             }
         }
 
-       // ActivateMultiAbilitiesOnSquare(activeNeighbors);
-
             for(int i = 0; i < activeNeighbors.Count; i++)
             {
-                try { ActivateAbilityOnSquare(activeNeighbors[i].ability.Type, ref abilityHasTriggered); }
-                catch(System.Exception e)
-                {
-                    Debug.LogError(e.ToString());
-                }
+                ActivateAbilityOnSquare(activeNeighbors[i].ability.Type, ref abilityHasTriggered);
             }
-
 
         return abilityHasTriggered;
     }
-
-   /* private void ActivateMultiAbilitiesOnSquare(List<Square> activeNeighbors)
-    {
-        Dictionary<SquareTypeCategory, List<SquareAbility>> abilitiesAroundSquare = new Dictionary<SquareTypeCategory, List<SquareAbility>>();
-
-        for(int i = 0; i < activeNeighbors.Count; i++)
-        {
-            if (!abilitiesAroundSquare.ContainsKey(activeNeighbors[i].ability.typeCategory)){
-
-                abilitiesAroundSquare.Add(activeNeighbors[i].ability.typeCategory, new List<SquareAbility> { activeNeighbors[i].ability});
-            }
-            else
-            {
-                abilitiesAroundSquare[activeNeighbors[i].ability.typeCategory].Add(activeNeighbors[i].ability);
-            }
-        }
-        
-
-        
-        foreach(KeyValuePair<SquareTypeCategory, List<SquareAbility>> pair in abilitiesAroundSquare)
-        {
-            if (pair.Value.Count > 1)
-            {
-                switch (pair.Key)
-                {
-
-                    case SquareTypeCategory.Rotate:
-                        //Queue Up rotate actions based on the number of rotates
-                        Debug.Log("Multiple Rotate Squares!");
-                        break;
-
-                    case SquareTypeCategory.Paint:
-                        Debug.Log("Multiple Paint Squares!");
-                        break;
-
-
-                    case SquareTypeCategory.Wind:
-                        Debug.Log("Multiple Wind Squares!");
-                        break;
-                }
-            }
-        }
-
-    }*/
-
-
 
     public bool AffectNeighborsWithAbility()
     {

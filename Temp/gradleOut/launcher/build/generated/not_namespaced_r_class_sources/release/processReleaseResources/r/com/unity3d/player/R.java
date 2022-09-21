@@ -9,15 +9,6 @@ package com.unity3d.player;
 public final class R {
     private R() {}
 
-    public static final class string {
-        private string() {}
-
-        public static final int FreeformWindowOrientation_landscape = 0x7f030000;
-        public static final int FreeformWindowOrientation_portrait = 0x7f030001;
-        public static final int FreeformWindowSize_maximize = 0x7f030002;
-        public static final int FreeformWindowSize_phone = 0x7f030003;
-        public static final int FreeformWindowSize_tablet = 0x7f030004;
-    }
     public static final class style {
         private style() {}
 
