@@ -43,3 +43,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7cd4499be6c630e488df6e57cd137414, type: 2}
   - {fileID: 11400000, guid: 76401c4bd89a21a409be4cd567ce03ed, type: 2}
   - {fileID: 11400000, guid: 1b6df003deeab6a4c9ebb4fb2c339b15, type: 2}
+  endlessLevels:
+  - {fileID: 11400000, guid: 0ebb9744fff6ae3468711f01b0abdb30, type: 2}

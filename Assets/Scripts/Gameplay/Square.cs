@@ -190,7 +190,7 @@ public class Square : MonoBehaviour {
         }
 
         float dist = Vector2.Distance(Game.worldTouchPosition, new Vector2(transform.position.x, transform.position.y));
-        if (Game.mode == Game.Mode.Play || Game.mode == Game.Mode.Test)
+        if (Game.mode == Game.Mode.Puzzle || Game.mode == Game.Mode.Test)
         {
 
             if (placed)
@@ -272,11 +272,6 @@ public class Square : MonoBehaviour {
             {
                 ExecuteBWDRotate();
             }
-        }
-
-        if(Vector3.Magnitude(moveDelta) > 0.01f)
-        {
-            Shift();
         }
     }
 
@@ -690,16 +685,10 @@ public class Square : MonoBehaviour {
 
    
 
-    public void Shift()
+    //returns true if shift is successful
+    public bool SetupShift(MatchDirection moveDirection)
     {
-        if (!CheckShiftCollision(moveDelta))
-        {
-            Board.DislodgeSquare(this);
-        }
-    }
 
-    public void SetupShift(MatchDirection moveDirection)
-    {
         int x = 0, y = 0;
 
         switch (moveDirection)
@@ -732,8 +721,20 @@ public class Square : MonoBehaviour {
             moveDelta = moveDelta.normalized;
         }
 
+        if (!CheckShiftCollision(moveDelta))
+        {
+            Board.DislodgeSquare(this);
+        }
+        else
+        {
+            shiftSetUp = false;
+            shifting = false;
+            return false;
+        }
+
         shiftSetUp = true;
         shifting = true;
+        return true;
     }
 
     private bool CheckShiftCollision(Vector2 shiftDirection)

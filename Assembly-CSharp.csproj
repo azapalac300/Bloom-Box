@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Gameplay\Hand.cs" />
     <Compile Include="Assets\Scripts\Gameplay\LevelSerializer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PaintBrush.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\PlayButtons.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Square.cs" />
     <Compile Include="Assets\Scripts\Gameplay\SquareAbility.cs" />

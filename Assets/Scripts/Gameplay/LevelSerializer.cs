@@ -22,14 +22,22 @@ public class LevelSerializer : MonoBehaviour
         //levelData = new Level_Data();
     }
 
-    public void SetUpLevel()
+    public void SetUpPuzzleLevel()
     {
-        if (levels.GetNLevels() > 0)
+        if (levels.GetNPuzzleLevels() > 0)
         {
-            LoadLevel();
+            LoadLevel(Game.Mode.Puzzle);
         }
     }
 
+
+    public void SetUpEndlessLevel()
+    {
+        if(levels.GetNEndlessLevels() > 0)
+        {
+            LoadLevel(Game.Mode.Endless);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,14 +53,14 @@ public class LevelSerializer : MonoBehaviour
 
             if (loadLevel)
             {
-                LoadLevel();
+                LoadLevel(Game.Mode.Puzzle);
                 loadLevel = false;
 
             }
 
             if (newLevel)
             {
-                NewLevel();
+                NewPuzzleLevel();
                 newLevel = false;
             }
         }
@@ -67,27 +75,67 @@ public class LevelSerializer : MonoBehaviour
     }
 
 
-    public void NewLevel()
+    public void NewPuzzleLevel()
     {
         game.HideMenu();
-        game.levelNum = levels.GetNLevels();
+        game.levelNum = levels.GetNPuzzleLevels();
         game.maxLevels++;
-        levels.AddLevel(new Level_Data());
+        levels.AddLevel(new Level_Data(), Game.Mode.Puzzle);
 
 
-        LoadLevel();
+        LoadLevel(Game.Mode.Puzzle);
     }
 
-    void LoadLevel()
-    { 
 
-        Level_Data data = levels.LoadLevel(game.levelNum);
+    public void NewEndlessLevel()
+    {
+        game.HideMenu();
+        game.endlessLevelNum = levels.GetNEndlessLevels();
+        game.maxEndlessLevels++;
+        levels.AddLevel(new Level_Data(), Game.Mode.Endless);
+
+
+        LoadLevel(Game.Mode.Endless);
+    }
+
+
+    void LoadLevel(Game.Mode mode)
+    {
+        int levelNum = -1;
+        if (mode == Game.Mode.Puzzle)
+        {
+            levelNum = game.levelNum;
+        }
+        else if (mode == Game.Mode.Endless)
+        {
+            levelNum = game.endlessLevelNum;
+        }
+        else
+        {
+            Debug.LogError(mode + " is not a valid play mode");
+            return;
+        }
+
+
+        Level_Data data = levels.LoadLevel(levelNum, mode);
 
 
         game.board.UpdateBoardData(data.boardData);
         game.goalsLeft = game.board.goalMarkers.Count;
-        game.maxLevels = levels.GetNLevels();
-        game.tutorialText.text = data.tutorialData;
+
+        if (mode == Game.Mode.Puzzle)
+        {
+            game.maxLevels = levels.GetNPuzzleLevels();
+        }else if(mode == Game.Mode.Endless){
+            game.maxLevels = levels.GetNEndlessLevels();
+        }
+        else
+        {
+            Debug.LogError(mode + " is not a valid play mode");
+            return;
+        }
+
+            game.tutorialText.text = data.tutorialData;
 
         if (data.handData != null)
         {

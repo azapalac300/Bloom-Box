@@ -6,7 +6,12 @@ using UnityEditor;
 [CreateAssetMenu]
 public class Levels : ScriptableObject
 {
-    public void AddLevel(Level_Data data)
+    [SerializeField]
+    private List<LevelDataAsset> list;
+
+    [SerializeField]
+    private List<LevelDataAsset> endlessLevels;
+    public void AddLevel(Level_Data data, Game.Mode mode)
     {
 
         if (list == null)
@@ -14,9 +19,28 @@ public class Levels : ScriptableObject
             list = new List<LevelDataAsset>();
         }
 
-#if(UNITY_EDITOR)
+        if(endlessLevels == null)
+        {
+            endlessLevels = new List<LevelDataAsset>();
+        }
 
-        LevelDataAsset a = MakeLevelData.CreateFile(list.Count, data);
+
+#if(UNITY_EDITOR)
+        
+        LevelDataAsset a = null;
+        if (mode == Game.Mode.Puzzle)
+        {
+          a = MakeLevelData.MakePuzzleLevel(list.Count, data);
+        }else if (mode == Game.Mode.Endless)
+        {
+           a = MakeLevelData.MakeEndlessLevel(endlessLevels.Count, data);
+        }
+        else
+        {
+            Debug.LogError("ERROR: Can't create levels for " + mode );
+            return;
+        }
+
 
         list.Add(a);
 
@@ -30,7 +54,7 @@ public class Levels : ScriptableObject
     {
         if (levelNum >= list.Count)
         {
-            AddLevel(data);
+            Debug.LogError("Somehow didn't create level first");
             return;
         }
 
@@ -45,16 +69,35 @@ public class Levels : ScriptableObject
 
         
     }
-    public int GetNLevels()
+
+    public int GetNPuzzleLevels()
     {
         return list.Count;
     }
 
-    public Level_Data LoadLevel(int levelNum)
+    public int GetNEndlessLevels()
+    {
+        return endlessLevels.Count;
+    }
+
+    public Level_Data LoadLevel(int levelNum, Game.Mode mode)
     {
         if (levelNum <= list.Count - 1)
         {
-            return list[levelNum].data;
+            if (mode == Game.Mode.Puzzle)
+            {
+                return list[levelNum].data;
+            }
+            else if (mode == Game.Mode.Endless)
+            {
+                return endlessLevels[levelNum].data;
+            }
+            else
+            {
+                Debug.LogError(mode + " is not a valid play mode");
+                return null;
+            }
+
         }
         else
         {
@@ -62,8 +105,7 @@ public class Levels : ScriptableObject
         }
     }
 
-    [SerializeField]
-    private List<LevelDataAsset> list;
+   
 }
 
 #region serializable classes

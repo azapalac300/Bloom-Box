@@ -14,32 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     boardData:
-      goalSquareCoords:
-      - x: 9
-        y: 10
+      goalSquareCoords: []
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: -4.8
+          x: 0
           y: 0
           z: 0
-        cellA_Color: 1
-        cellB_Color: 2
-        cellC_Color: 2
-        cellD_Color: 1
+        cellA_Color: 8
+        cellB_Color: 8
+        cellC_Color: 8
+        cellD_Color: 8
         type: 0
-        coords: 080000000a000000
+        coords: 0a0000000a000000
     handData:
-      handSquares:
-      - position:
-          testVector: {x: 0, y: 0, z: 0}
-          x: -7.480488
-          y: -20.832193
-          z: 0
-        cellA_Color: 2
-        cellB_Color: 2
-        cellC_Color: 2
-        cellD_Color: 2
-        type: 0
-        coords: 0700000001000000
-    tutorialData: Drag the blue flower to its box!
+      handSquares: []
+    tutorialData: 

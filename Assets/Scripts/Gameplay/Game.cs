@@ -24,13 +24,15 @@ public class Game : MonoBehaviour {
     private Mode gameMode;
 
     public int levelNum;
+    public int endlessLevelNum;
 
 
     public int maxLevels;
+    public int maxEndlessLevels;
 
     public int goalsLeft;
 
-    public GameObject playButtons;
+    public GameObject _playButtons;
     public GameObject playMenu;
     public GameObject editMenu;
 
@@ -45,7 +47,8 @@ public class Game : MonoBehaviour {
 
     public bool fullReset;
 
-    public InputField input;
+    public InputField puzzleInput;
+    public InputField endlessInput;
 
     public static float Scale { get; private set; }
     public static float RotateSpeed { get; private set; }
@@ -87,10 +90,12 @@ public class Game : MonoBehaviour {
     
     public enum Mode
     {
-        Play,
+        Puzzle,
+        Endless,
         Test,
         Edit
     }
+
     public static Mode mode { get; private set; }
 
    
@@ -120,7 +125,7 @@ public class Game : MonoBehaviour {
     public void ShowMenu()
     {
         
-        if (mode == Mode.Play)
+        if (mode == Mode.Puzzle)
         {
             playMenu.SetActive(true);
 
@@ -132,13 +137,13 @@ public class Game : MonoBehaviour {
 
         board.gameObject.SetActive(false);
         hand.gameObject.SetActive(false);
-        playButtons.SetActive(false);
+        _playButtons.SetActive(false);
     }
 
 
     public void HideMenu()
     {
-        if (mode == Mode.Play)
+        if (mode == Mode.Puzzle)
         {
             playMenu.SetActive(false);
 
@@ -150,7 +155,7 @@ public class Game : MonoBehaviour {
 
         board.gameObject.SetActive(true);
         hand.gameObject.SetActive(true);
-        playButtons.SetActive(true);
+        _playButtons.SetActive(true);
     }
 
     // Use this for initialization
@@ -158,7 +163,9 @@ public class Game : MonoBehaviour {
 
         
         board.SetUp();
-        levelSerializer.SetUpLevel();
+
+        
+       
         SwitchMode();
         
 
@@ -167,26 +174,38 @@ public class Game : MonoBehaviour {
     public void SwitchMode() {
 
         gameMode = mode;
-
+        PlayButtons playButtons = _playButtons.GetComponent<PlayButtons>();
         switch (mode)
         {
+           
+
             case Mode.Edit:
                 ResetLevel();
-                playButtons.SetActive(true);
+                playButtons.SetUpForEdit();
                 testIndicator.SetActive(false);
                 editIndicator.SetActive(true);
+                levelSerializer.SetUpPuzzleLevel();
                 board.SetUpEdit();
                 break;
-            case Mode.Play:
-                playButtons.SetActive(true);
+            case Mode.Puzzle:
+                playButtons.SetUpForPuzzle();
                 testIndicator.SetActive(false);
                 editIndicator.SetActive(false);
+                levelSerializer.SetUpPuzzleLevel();
+                board.SetUpPlay();
+                break;
+            case Mode.Endless:
+                playButtons.SetUpForEndless();
+                testIndicator.SetActive(false);
+                editIndicator.SetActive(false);
+                levelSerializer.SetUpEndlessLevel();
                 board.SetUpPlay();
                 break;
             case Mode.Test:
-                playButtons.SetActive(false);
+                playButtons.SetUpForTest(); ;
                 testIndicator.SetActive(true);
                 editIndicator.SetActive(false);
+                levelSerializer.SetUpPuzzleLevel();
                 board.SetUpPlay();
                 break;
         }
@@ -198,7 +217,7 @@ public class Game : MonoBehaviour {
 
 
 
-        if ((mode == Mode.Play || mode == Mode.Test))
+        if ((mode == Mode.Puzzle || mode == Mode.Test || mode == Mode.Endless))
         {
             PlayGame();
 
@@ -283,7 +302,7 @@ public class Game : MonoBehaviour {
 
     public static void SelectSquare(Square s)
     {
-        if ((mode == Mode.Play || mode == Mode.Test) && touching)
+        if ((mode == Mode.Puzzle || mode == Mode.Test) && touching)
         {
             if (SelectedSquare != null)
             {
@@ -318,10 +337,11 @@ public class Game : MonoBehaviour {
         
     }
 
+
     public void ResetLevel()
     {
         HideMenu();
-        levelSerializer.SetUpLevel();
+        levelSerializer.SetUpPuzzleLevel();
     }
 
     public void LoadNextLevel()
@@ -331,7 +351,7 @@ public class Game : MonoBehaviour {
             Debug.LogError("Something went wrong, you shouldn't be able to access this function in edit mode");
         }
 
-        if (mode == Mode.Play)
+        if (mode == Mode.Puzzle)
         {
 
             victoryDisplay.SetActive(false);
@@ -346,7 +366,7 @@ public class Game : MonoBehaviour {
                 }
 
 
-                levelSerializer.SetUpLevel();
+                levelSerializer.SetUpPuzzleLevel();
             }
             else
             {
@@ -358,7 +378,7 @@ public class Game : MonoBehaviour {
 
         if(mode == Mode.Test)
         {
-            levelSerializer.SetUpLevel();
+            levelSerializer.SetUpPuzzleLevel();
         }
     }
 
@@ -367,20 +387,36 @@ public class Game : MonoBehaviour {
         return new Vector3(Game.Scale, Game.Scale, 1);
     }
 
-    public void LoadLevelFromUI()
+    public void LoadPuzzleLevelFromUI()
     {
         HideMenu();
-        string s = input.text;
-        LoadLevel(int.Parse(s));
+        string s = puzzleInput.text;
+        LoadLevel(int.Parse(s), Game.Mode.Puzzle);
     }
 
-    private void LoadLevel(int levelToLoad)
+    public void LoadEndlessLevelFromUI()
     {
-        if (levelToLoad < maxLevels)
+        HideMenu();
+        string s = endlessInput.text;
+        LoadLevel(int.Parse(s), Mode.Endless);
+    }
+
+    private void LoadLevel(int levelToLoad, Mode levelType)
+    {
+        if (levelToLoad < maxLevels || levelToLoad < maxEndlessLevels)
         {
             levelNum = levelToLoad;
-            settings.SetCurrentLevel(levelToLoad, mode == Mode.Edit);
-            levelSerializer.SetUpLevel();
+            
+
+            if (levelType == Mode.Puzzle)
+            {
+                levelSerializer.SetUpPuzzleLevel();
+                settings.SetCurrentLevel(levelToLoad, mode == Mode.Edit);
+            }
+            else
+            {
+                levelSerializer.SetUpEndlessLevel();
+            }
         }
         else
         {

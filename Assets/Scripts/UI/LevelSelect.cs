@@ -40,7 +40,7 @@ public class LevelSelect : MonoBehaviour
     public int GetNLevels()
     {
         Levels levels = (Levels)Resources.Load("LevelFiles/Levels");
-        return levels.GetNLevels();
+        return levels.GetNPuzzleLevels();
     }
 
 
