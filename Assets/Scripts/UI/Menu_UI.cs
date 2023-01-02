@@ -57,4 +57,9 @@ public class Menu_UI : MonoBehaviour
         yield return new WaitForSeconds(sceneLoadTime);
         SceneManager.LoadScene(sceneName);
     }
+
+    public void OpenKofiSite()
+    {
+        Application.OpenURL("https://ko-fi.com/alexz68053");
+    }
 }
