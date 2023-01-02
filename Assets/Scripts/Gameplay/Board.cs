@@ -429,8 +429,8 @@ public class Board : MonoBehaviour {
                             s.transform.position = GetGridPosition(s.coords);
                             
                             s.transform.parent = transform;
-                            s.Deselect();
-                            s.highlighted = false;
+                            
+                            
                             s.PlaceSquareOnBoard += PlaceSquare;
 
                             PlaceSquare(s);
@@ -451,8 +451,11 @@ public class Board : MonoBehaviour {
 
     public void PlaceSquare(Square s)
     {
+
+        s.Deselect();
+        s.highlighted = false;
         List<Square> neighbors = GetNeighborSquares(s.coords);
-        
+
         AddSquareToBoard(s, true, neighbors);
 
         CheckWin(s);

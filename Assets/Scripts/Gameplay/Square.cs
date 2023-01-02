@@ -183,6 +183,7 @@ public class Square : MonoBehaviour {
             Debug.DrawLine(transform.position, transform.position + moveDelta*10, Color.red);
             if (CheckShiftCollision(moveDelta))
             {
+                
                 shifting = false;
                 PlaceSquareOnBoard?.Invoke(this) ;
                 
@@ -731,6 +732,9 @@ public class Square : MonoBehaviour {
             shifting = false;
             return false;
         }
+
+        highlighted = false;
+        selected = false;
 
         shiftSetUp = true;
         shifting = true;

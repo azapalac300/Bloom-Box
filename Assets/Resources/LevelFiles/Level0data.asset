@@ -14,19 +14,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     boardData:
-      goalSquareCoords: []
+      goalSquareCoords:
+      - x: 10
+        y: 10
       boardSquares:
       - position:
           testVector: {x: 0, y: 0, z: 0}
-          x: 0
+          x: -2.4
           y: 0
           z: 0
-        cellA_Color: 8
-        cellB_Color: 8
-        cellC_Color: 8
-        cellD_Color: 8
+        cellA_Color: 2
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 2
         type: 0
-        coords: 0a0000000a000000
+        coords: 090000000a000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 2.4
+          y: 0
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 2
+        cellC_Color: 2
+        cellD_Color: 1
+        type: 0
+        coords: 0b0000000a000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 0
+          y: -2.4
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 2
+        cellD_Color: 2
+        type: 0
+        coords: 0a00000009000000
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: 0
+          y: 2.4
+          z: 0
+        cellA_Color: 2
+        cellB_Color: 2
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 0
+        coords: 0a0000000b000000
     handData:
-      handSquares: []
-    tutorialData: 
+      handSquares:
+      - position:
+          testVector: {x: 0, y: 0, z: 0}
+          x: -9.05749
+          y: -20.832193
+          z: 0
+        cellA_Color: 1
+        cellB_Color: 1
+        cellC_Color: 1
+        cellD_Color: 1
+        type: 0
+        coords: 0600000001000000
+    tutorialData: Drag the red flower into the box!
