@@ -3444,10 +3444,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Board_SetHighlight_m4E4B240D4E7DD030D9DE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Game_get_touching_mB9B67F3C0AB4FA917E0BCE898B8787B057F75AC8 (const RuntimeMethod* method) ;
 // System.Void Hand::RemoveSquare(Square)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Hand_RemoveSquare_m34418A6D925A54761F094DCBEFE3C32D11915ABB (Hand_t68D826D6A2994AEFBCC1627833F8CA60C8A4A7B1* __this, Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* ___square0, const RuntimeMethod* method) ;
-// System.Void Square::Deselect(System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Square_Deselect_m939CC796007F1C7A9C015DCF546B956E86075E16 (Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* __this, bool ___audioFlag0, const RuntimeMethod* method) ;
 // System.Void Board::PlaceSquare(Square)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Board_PlaceSquare_m7556C4370CF0A12C1F97D6AC6076528B369DFC92 (Board_t924A10F2404EA6D3DB02711555BEDFD794B70C1A* __this, Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* ___s0, const RuntimeMethod* method) ;
+// System.Void Square::Deselect(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Square_Deselect_m939CC796007F1C7A9C015DCF546B956E86075E16 (Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* __this, bool ___audioFlag0, const RuntimeMethod* method) ;
 // System.Void Board::CheckWin(Square)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Board_CheckWin_m030BF74CD381959798BF95803C843EE5C281FC62 (Board_t924A10F2404EA6D3DB02711555BEDFD794B70C1A* __this, Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* ___s0, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Dictionary`2<System.String,Square>::Add(TKey,TValue)
@@ -6576,7 +6576,7 @@ IL_0076:
 		L_33 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_32, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
 		if (!L_33)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6682,7 +6682,7 @@ IL_0115:
 		bool L_56 = V_3;
 		if (!L_56)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6696,7 +6696,7 @@ IL_0115:
 		bool L_59 = L_58->___placed_7;
 		if (L_59)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6707,7 +6707,7 @@ IL_0115:
 		L_61 = Square_get_inTray_m5601AAC71A991185F569084250AADE6791DBF801(L_60, NULL);
 		if (L_61)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6722,7 +6722,7 @@ IL_0115:
 		L_66 = Dictionary_2_ContainsKey_m622A8B2BE1AB2CB5E5A66F8689D6849EF4A30A9A(L_62, L_65, Dictionary_2_ContainsKey_m622A8B2BE1AB2CB5E5A66F8689D6849EF4A30A9A_RuntimeMethod_var);
 		if (L_66)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6740,7 +6740,7 @@ IL_0115:
 		L_70 = Game_get_touching_mB9B67F3C0AB4FA917E0BCE898B8787B057F75AC8(NULL);
 		if (L_70)
 		{
-			goto IL_01de;
+			goto IL_01cd;
 		}
 	}
 	{
@@ -6774,31 +6774,23 @@ IL_0115:
 		L_81 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
 		NullCheck(L_80);
 		Transform_set_parent_m9BD5E563B539DD5BEC342736B03F97B38A243234(L_80, L_81, NULL);
-		// s.Deselect();
-		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_82 = ___s0;
-		NullCheck(L_82);
-		Square_Deselect_m939CC796007F1C7A9C015DCF546B956E86075E16(L_82, (bool)0, NULL);
-		// s.highlighted = false;
-		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_83 = ___s0;
-		NullCheck(L_83);
-		L_83->___highlighted_10 = (bool)0;
 		// s.PlaceSquareOnBoard += PlaceSquare;
-		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_84 = ___s0;
-		Action_1_tA971BA87C463702D7297047F2935F1F187C86501* L_85 = (Action_1_tA971BA87C463702D7297047F2935F1F187C86501*)il2cpp_codegen_object_new(Action_1_tA971BA87C463702D7297047F2935F1F187C86501_il2cpp_TypeInfo_var);
-		NullCheck(L_85);
-		Action_1__ctor_m36939D25923576B23CC9B69459739E4F31DAE86E(L_85, __this, (intptr_t)((void*)Board_PlaceSquare_m7556C4370CF0A12C1F97D6AC6076528B369DFC92_RuntimeMethod_var), NULL);
-		NullCheck(L_84);
-		Square_add_PlaceSquareOnBoard_m13F57634011A5B20BF08C2ADE670C1D21E82D3F6(L_84, L_85, NULL);
+		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_82 = ___s0;
+		Action_1_tA971BA87C463702D7297047F2935F1F187C86501* L_83 = (Action_1_tA971BA87C463702D7297047F2935F1F187C86501*)il2cpp_codegen_object_new(Action_1_tA971BA87C463702D7297047F2935F1F187C86501_il2cpp_TypeInfo_var);
+		NullCheck(L_83);
+		Action_1__ctor_m36939D25923576B23CC9B69459739E4F31DAE86E(L_83, __this, (intptr_t)((void*)Board_PlaceSquare_m7556C4370CF0A12C1F97D6AC6076528B369DFC92_RuntimeMethod_var), NULL);
+		NullCheck(L_82);
+		Square_add_PlaceSquareOnBoard_m13F57634011A5B20BF08C2ADE670C1D21E82D3F6(L_82, L_83, NULL);
 		// PlaceSquare(s);
-		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_86 = ___s0;
-		Board_PlaceSquare_m7556C4370CF0A12C1F97D6AC6076528B369DFC92(__this, L_86, NULL);
+		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_84 = ___s0;
+		Board_PlaceSquare_m7556C4370CF0A12C1F97D6AC6076528B369DFC92(__this, L_84, NULL);
 		// Cleanup();
 		Board_Cleanup_m85B5CE5AF086B0760DEC0BE9F6EE9A829D9C1D08(__this, NULL);
 		// return true;
 		return (bool)1;
 	}
 
-IL_01de:
+IL_01cd:
 	{
 		// return false;
 		return (bool)0;
@@ -6809,20 +6801,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Board_PlaceSquare_m7556C4370CF0A12C1F97D
 {
 	List_1_t1652E6BF8CA29AB2FA8F61BE821C0450E1E3AC7F* V_0 = NULL;
 	{
-		// List<Square> neighbors = GetNeighborSquares(s.coords);
+		// s.Deselect();
 		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_0 = ___s0;
 		NullCheck(L_0);
-		Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* L_1 = L_0->___coords_30;
-		List_1_t1652E6BF8CA29AB2FA8F61BE821C0450E1E3AC7F* L_2;
-		L_2 = Board_GetNeighborSquares_mB8789CA11E3116BCC29BF0CC8BF8958A5B0AEEA4(L_1, NULL);
-		V_0 = L_2;
+		Square_Deselect_m939CC796007F1C7A9C015DCF546B956E86075E16(L_0, (bool)0, NULL);
+		// s.highlighted = false;
+		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_1 = ___s0;
+		NullCheck(L_1);
+		L_1->___highlighted_10 = (bool)0;
+		// List<Square> neighbors = GetNeighborSquares(s.coords);
+		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_2 = ___s0;
+		NullCheck(L_2);
+		Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* L_3 = L_2->___coords_30;
+		List_1_t1652E6BF8CA29AB2FA8F61BE821C0450E1E3AC7F* L_4;
+		L_4 = Board_GetNeighborSquares_mB8789CA11E3116BCC29BF0CC8BF8958A5B0AEEA4(L_3, NULL);
+		V_0 = L_4;
 		// AddSquareToBoard(s, true, neighbors);
-		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_3 = ___s0;
-		List_1_t1652E6BF8CA29AB2FA8F61BE821C0450E1E3AC7F* L_4 = V_0;
-		Board_AddSquareToBoard_m2D7B0C3739CB3629A432D0E4FD9B7B17F2853C62(__this, L_3, (bool)1, L_4, NULL);
-		// CheckWin(s);
 		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_5 = ___s0;
-		Board_CheckWin_m030BF74CD381959798BF95803C843EE5C281FC62(__this, L_5, NULL);
+		List_1_t1652E6BF8CA29AB2FA8F61BE821C0450E1E3AC7F* L_6 = V_0;
+		Board_AddSquareToBoard_m2D7B0C3739CB3629A432D0E4FD9B7B17F2853C62(__this, L_5, (bool)1, L_6, NULL);
+		// CheckWin(s);
+		Square_tC6B5442ADA54621015F7C296836CF61F3122A16E* L_7 = ___s0;
+		Board_CheckWin_m030BF74CD381959798BF95803C843EE5C281FC62(__this, L_7, NULL);
 		// }
 		return;
 	}
@@ -15077,6 +15077,10 @@ IL_008f:
 
 IL_009f:
 	{
+		// highlighted = false;
+		__this->___highlighted_10 = (bool)0;
+		// selected = false;
+		__this->___selected_5 = (bool)0;
 		// shiftSetUp = true;
 		__this->___shiftSetUp_35 = (bool)1;
 		// shifting = true;

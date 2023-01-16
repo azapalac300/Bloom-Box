@@ -3283,7 +3283,7 @@ MonoBehaviour:
   rotateSpeed: 7
   shiftSpeed: 10
   boardSize: 20
-  gameMode: 3
+  gameMode: 0
   levelNum: 1
   endlessLevelNum: 0
   maxLevels: 6
@@ -3367,7 +3367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f5778be4b00a844af92e08913fd3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UsingTouch: 0
+  UsingTouch: 1
 --- !u!114 &1389216822
 MonoBehaviour:
   m_ObjectHideFlags: 0
